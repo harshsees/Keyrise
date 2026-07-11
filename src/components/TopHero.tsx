@@ -31,11 +31,9 @@ export function TopHero({ onStart }: TopHeroProps) {
                 Dubai (UAE) Visa for Indians
               </h1>
 
-              <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/12 px-4 py-3 text-sm font-medium text-white/90 backdrop-blur">
-                  <ShieldCheck className="h-5 w-5 text-emerald-300" />
-                  Visa guaranteed in 4 days
-                </div>
+              <div className="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold text-white/85">
+                <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                Visa guaranteed in 4 days
               </div>
 
               <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
