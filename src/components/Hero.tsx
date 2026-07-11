@@ -9,9 +9,9 @@ type HeroProps = {
 
 export function Hero({ onStart }: HeroProps) {
   return (
-    <section className="mx-auto grid w-full max-w-7xl gap-5 px-4 py-8 md:grid-cols-[0.92fr_1.08fr] md:px-6 md:py-10">
-      <ApplicationCard onStart={onStart} />
+    <section className="mx-auto grid w-full max-w-7xl gap-5 px-4 py-8 md:grid-cols-[1.08fr_0.92fr] md:px-6 md:py-10">
       <VisaInfoAndPlans />
+      <ApplicationCard onStart={onStart} />
     </section>
   );
 }
