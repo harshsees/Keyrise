@@ -2,7 +2,6 @@
 
 import { CheckCircle2, ChevronDown, CalendarDays, FileText, FolderOpen, Smartphone, Clock3 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 const visaInfo = [
   { label: "Visa Type", value: "E-Visa", icon: Smartphone, accent: "bg-indigo-100 text-indigo-600" },
@@ -27,9 +26,12 @@ const plans = [
   },
 ];
 
-export function VisaInfoAndPlans() {
-  const [selectedPlan, setSelectedPlan] = useState(1);
+type VisaInfoAndPlansProps = {
+  selectedPlan: number;
+  onSelectPlan: (index: number) => void;
+};
 
+export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlansProps) {
   return (
     <div className="space-y-3.5">
       <div>
@@ -73,7 +75,7 @@ export function VisaInfoAndPlans() {
                 <motion.button
                   key={plan.title}
                   type="button"
-                  onClick={() => setSelectedPlan(index)}
+                  onClick={() => onSelectPlan(index)}
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                   className={`relative w-full rounded-xl border p-3 text-left transition ${
