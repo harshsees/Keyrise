@@ -3,13 +3,6 @@
 import { CheckCircle2, ChevronDown, CalendarDays, FileText, FolderOpen, Smartphone, Clock3 } from "lucide-react";
 import { motion } from "framer-motion";
 
-const visaInfo = [
-  { label: "Visa Type", value: "E-Visa", icon: Smartphone, accent: "bg-indigo-100 text-indigo-600" },
-  { label: "Length of Stay", value: "30 days", icon: CalendarDays, accent: "bg-sky-100 text-sky-600" },
-  { label: "Validity", value: "60 days", icon: Clock3, accent: "bg-emerald-100 text-emerald-600" },
-  { label: "Entry", value: "Single", icon: FileText, accent: "bg-violet-100 text-violet-600" },
-  { label: "Method", value: "Paperless", icon: FolderOpen, accent: "bg-blue-100 text-blue-600" },
-];
 
 const plans = [
   {
@@ -38,25 +31,112 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
         <h1 className="text-2xl font-bold text-[var(--foreground)]">
           Dubai visa information
         </h1>
-        <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
-          {visaInfo.map(({ label, value, icon: Icon, accent }) => (
-            <motion.div
-              key={label}
-              whileHover={{ y: -1 }}
-              transition={{ duration: 0.2 }}
-              className="rounded-xl border border-[var(--border)] bg-[#fafafa] px-3.5 py-2.5"
-            >
-              <div className="flex items-center gap-2.5">
-                <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${accent}`}>
-                  <Icon className="h-4.5 w-4.5" />
-                </div>
-                <div>
-                  <p className="text-xs text-[var(--muted)]">{label}:</p>
-                  <p className="text-sm font-semibold text-[var(--foreground)]">{value}</p>
+        {/* Borderless visa information details grouped into two rows */}
+        <div className="mt-4 space-y-4">
+          {/* Row 1: 3 components */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-5 md:gap-8 border-b border-slate-200/50 pb-4">
+            {/* 1. Visa Type */}
+            <div className="flex items-center gap-3 min-w-[130px]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+                <Smartphone className="h-4.5 w-4.5" />
+              </div>
+              <div>
+                <p className="text-xs text-[var(--muted)]">Visa Type:</p>
+                <p className="text-sm font-bold text-[var(--foreground)]">E-Visa</p>
+              </div>
+            </div>
+
+            {/* 2. Length of Stay */}
+            <div className="flex items-center gap-3 min-w-[160px]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+                <CalendarDays className="h-4.5 w-4.5" />
+              </div>
+              <div>
+                <p className="text-xs text-[var(--muted)]">Length of Stay:</p>
+                <div className="relative group inline-block">
+                  <span className="text-sm font-bold text-[var(--foreground)] underline decoration-slate-400 decoration-dotted underline-offset-4 cursor-pointer">
+                    30 days
+                  </span>
+                  {/* Tooltip Box */}
+                  <div className="absolute top-full left-0 mt-2.5 hidden group-hover:block w-[280px] bg-white border border-slate-200/80 rounded-2xl p-4 shadow-[0_12px_32px_rgba(15,23,42,0.08)] z-30 pointer-events-none">
+                    <p className="text-sm font-bold text-slate-900">Length of Stay: 30 days</p>
+                    <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                      The maximum duration that you are allowed to remain in a country after entering with that particular visa.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+            </div>
+
+            {/* 3. Validity */}
+            <div className="flex items-center gap-3 min-w-[130px]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Clock3 className="h-4.5 w-4.5" />
+              </div>
+              <div>
+                <p className="text-xs text-[var(--muted)]">Validity:</p>
+                <div className="relative group inline-block">
+                  <span className="text-sm font-bold text-[var(--foreground)] underline decoration-slate-400 decoration-dotted underline-offset-4 cursor-pointer">
+                    60 days
+                  </span>
+                  {/* Tooltip Box */}
+                  <div className="absolute top-full left-0 mt-2.5 hidden group-hover:block w-[280px] bg-white border border-slate-200/80 rounded-2xl p-4 shadow-[0_12px_32px_rgba(15,23,42,0.08)] z-30 pointer-events-none">
+                    <p className="text-sm font-bold text-slate-900">Validity Period: 60 days</p>
+                    <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                      The number of days your visa is active after the date of issuance. We ensure your visa is valid based on your travel dates.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Row 2: remaining 2 components */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-5 md:gap-8">
+            {/* 4. Entry */}
+            <div className="flex items-center gap-3 min-w-[130px]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
+                <FileText className="h-4.5 w-4.5" />
+              </div>
+              <div>
+                <p className="text-xs text-[var(--muted)]">Entry:</p>
+                <div className="relative group inline-block">
+                  <span className="text-sm font-bold text-[var(--foreground)] underline decoration-slate-400 decoration-dotted underline-offset-4 cursor-pointer">
+                    Single
+                  </span>
+                  {/* Tooltip Box */}
+                  <div className="absolute top-full left-0 mt-2.5 hidden group-hover:block w-[280px] bg-white border border-slate-200/80 rounded-2xl p-4 shadow-[0_12px_32px_rgba(15,23,42,0.08)] z-30 pointer-events-none">
+                    <p className="text-sm font-bold text-slate-900">Entry: Single</p>
+                    <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                      {"You can enter the country only once during the visa's validity period and cannot re-enter using the same visa once you've exited."}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 5. Method */}
+            <div className="flex items-center gap-3 min-w-[160px]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <FolderOpen className="h-4.5 w-4.5" />
+              </div>
+              <div>
+                <p className="text-xs text-[var(--muted)]">Method:</p>
+                <div className="relative group inline-block">
+                  <span className="text-sm font-bold text-[var(--foreground)] underline decoration-slate-400 decoration-dotted underline-offset-4 cursor-pointer">
+                    Paperless
+                  </span>
+                  {/* Tooltip Box */}
+                  <div className="absolute top-full left-0 mt-2.5 hidden group-hover:block w-[280px] bg-white border border-slate-200/80 rounded-2xl p-4 shadow-[0_12px_32px_rgba(15,23,42,0.08)] z-30 pointer-events-none">
+                    <p className="text-sm font-bold text-slate-900">Method: Paperless</p>
+                    <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                      Apply and receive your visa fully online. No paperwork needed.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
