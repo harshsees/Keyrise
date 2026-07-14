@@ -123,23 +123,35 @@ export function ApplicationCard({
             {selectedPlan === 0 ? (
               /* Option 1: Tourist visa - 30 days status bar */
               <div className="flex items-center justify-between rounded-2xl bg-slate-100/80 border border-slate-200/30 p-1 px-1.5 min-h-[44px]">
-                <div className="flex items-center gap-1.5 rounded-xl bg-white px-3 py-1.5 text-xs font-bold text-indigo-600 shadow-sm">
+                <button
+                  type="button"
+                  onClick={() => onSelectPlan(0)}
+                  className="flex items-center gap-1.5 rounded-xl bg-white px-3 py-1.5 text-xs font-bold text-indigo-600 shadow-sm hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
+                >
                   <ShieldCheck className="h-3.5 w-3.5 text-indigo-600 flex-shrink-0" />
                   <span>Guaranteed by 16th Jul, 07:33 pm</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 pr-2.5">
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onSelectPlan(1)}
+                  className="flex items-center gap-1.5 text-xs font-bold text-slate-800 pr-2.5 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
+                >
                   <Zap className="h-3.5 w-3.5 text-slate-900 fill-slate-900 flex-shrink-0" />
                   <span>8 hours faster</span>
-                </div>
+                </button>
               </div>
             ) : (
               /* Option 2: Tourist visa - 60 days status bar */
-              <div className="flex items-center justify-center rounded-2xl bg-slate-100/80 border border-slate-200/30 p-2.5 min-h-[44px]">
+              <button
+                type="button"
+                onClick={() => onSelectPlan(0)}
+                className="w-full flex items-center justify-center rounded-2xl bg-slate-100/80 border border-slate-200/30 p-2.5 min-h-[44px] hover:bg-slate-200/60 active:scale-[0.99] transition cursor-pointer"
+              >
                 <div className="flex items-center gap-2 text-xs font-bold text-indigo-600">
                   <Zap className="h-4 w-4 text-indigo-600 fill-indigo-600 flex-shrink-0" />
                   <span>Guaranteed by 16th Jul, 11:33 am</span>
                 </div>
-              </div>
+              </button>
             )}
           </motion.div>
 
