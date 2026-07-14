@@ -20,6 +20,25 @@ type ApplicationCardProps = {
   onSelectPlan: (index: number) => void;
 };
 
+// Helper function to get the date dynamically (e.g. 2 days ahead)
+const getFormattedDate = (daysAhead: number) => {
+  const date = new Date();
+  date.setDate(date.getDate() + daysAhead);
+  
+  const day = date.getDate();
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const month = months[date.getMonth()];
+  
+  // Get ordinal suffix
+  const getOrdinal = (n: number) => {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return s[(v - 20) % 10] || s[v] || s[0];
+  };
+  
+  return `${day}${getOrdinal(day)} ${month}`;
+};
+
 export function ApplicationCard({
   onStart,
   selectedPlan,
@@ -115,44 +134,79 @@ export function ApplicationCard({
         animate="visible"
         className="w-full"
       >
-        {/* Card Body with Glassmorphism and premium border styles */}
-        <div className="w-full rounded-[28px] border border-slate-200/80 bg-white/95 backdrop-blur-md p-3.5 md:p-4 shadow-[0_20px_50px_rgba(15,23,42,0.04)]">
+        {/* Card Body with Glassmorphism, animated border & shadow based on selected option */}
+        <motion.div
+          animate={shouldReduceMotion ? {} : {
+            borderColor: selectedPlan === 0 ? "rgba(99, 102, 241, 0.7)" : "rgba(245, 158, 11, 0.7)",
+            boxShadow: selectedPlan === 0 
+              ? "0 20px 50px rgba(99, 102, 241, 0.05), 0 1px 3px rgba(99, 102, 241, 0.01)" 
+              : "0 20px 50px rgba(245, 158, 11, 0.05), 0 1px 3px rgba(245, 158, 11, 0.01)"
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" as const }}
+          className="w-full rounded-[28px] border bg-white/95 backdrop-blur-md p-3.5 md:p-4 transition-colors duration-300"
+        >
           
-          {/* Top Status Bar synced to left hand options */}
+          {/* Top Status Bar with active capsule sliding transition */}
           <motion.div variants={itemVariants} className="mb-4">
-            {selectedPlan === 0 ? (
-              /* Option 1: Tourist visa - 30 days status bar */
-              <div className="flex items-center justify-between rounded-2xl bg-slate-100/80 border border-slate-200/30 p-1 px-1.5 min-h-[44px]">
-                <button
-                  type="button"
-                  onClick={() => onSelectPlan(0)}
-                  className="flex items-center gap-1.5 rounded-xl bg-white px-3 py-1.5 text-xs font-bold text-indigo-600 shadow-sm hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
-                >
-                  <ShieldCheck className="h-3.5 w-3.5 text-indigo-600 flex-shrink-0" />
-                  <span>Guaranteed by 16th Jul, 07:33 pm</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onSelectPlan(1)}
-                  className="flex items-center gap-1.5 text-xs font-bold text-slate-800 pr-2.5 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
-                >
-                  <Zap className="h-3.5 w-3.5 text-slate-900 fill-slate-900 flex-shrink-0" />
-                  <span>8 hours faster</span>
-                </button>
-              </div>
-            ) : (
-              /* Option 2: Tourist visa - 60 days status bar */
+            <div className="relative flex items-center justify-between rounded-2xl bg-slate-100/80 border border-slate-200/30 p-1 min-h-[46px] w-full">
+              
+              {/* Option 1 Button: 30 Days selection */}
               <button
                 type="button"
                 onClick={() => onSelectPlan(0)}
-                className="w-full flex items-center justify-center rounded-2xl bg-slate-100/80 border border-slate-200/30 p-2.5 min-h-[44px] hover:bg-slate-200/60 active:scale-[0.99] transition cursor-pointer"
+                className={`relative z-10 flex-1 flex items-center justify-center gap-1.5 rounded-xl py-2 px-3 text-xs font-bold transition duration-300 cursor-pointer ${
+                  selectedPlan === 0 ? "text-indigo-600" : "text-slate-500 hover:text-slate-700"
+                }`}
               >
-                <div className="flex items-center gap-2 text-xs font-bold text-indigo-600">
-                  <Zap className="h-4 w-4 text-indigo-600 fill-indigo-600 flex-shrink-0" />
-                  <span>Guaranteed by 16th Jul, 11:33 am</span>
-                </div>
+                {selectedPlan === 0 && (
+                  <motion.div
+                    layoutId="activeStatusTab"
+                    animate={{
+                      borderColor: "rgba(99, 102, 241, 0.75)"
+                    }}
+                    className="absolute inset-0 bg-white rounded-xl shadow-sm border-2 -z-10"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                {selectedPlan === 0 && <ShieldCheck className="h-3.5 w-3.5 text-indigo-600 flex-shrink-0 animate-fade-in" />}
+                <span>
+                  {selectedPlan === 0 
+                    ? `Guaranteed by ${getFormattedDate(2)}, 07:33 pm` 
+                    : getFormattedDate(2)
+                  }
+                </span>
               </button>
-            )}
+
+              {/* Option 2 Button: 60 Days selection */}
+              <button
+                type="button"
+                onClick={() => onSelectPlan(1)}
+                className={`relative z-10 flex-1 flex items-center justify-center gap-1.5 rounded-xl py-2 px-3 text-xs font-bold transition duration-300 cursor-pointer ${
+                  selectedPlan === 1 ? "text-indigo-600" : "text-slate-800 hover:text-slate-900"
+                }`}
+              >
+                {selectedPlan === 1 && (
+                  <motion.div
+                    layoutId="activeStatusTab"
+                    animate={{
+                      borderColor: "rgba(245, 158, 11, 0.75)"
+                    }}
+                    className="absolute inset-0 bg-white rounded-xl shadow-sm border-2 -z-10"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <Zap className={`h-3.5 w-3.5 flex-shrink-0 ${
+                  selectedPlan === 1 ? "text-indigo-600 fill-indigo-600" : "text-slate-900 fill-slate-900"
+                }`} />
+                <span>
+                  {selectedPlan === 1 
+                    ? `Guaranteed by ${getFormattedDate(2)}, 11:33 am` 
+                    : "8 hours faster"
+                  }
+                </span>
+              </button>
+
+            </div>
           </motion.div>
 
           {/* Visa configuration selectors */}
@@ -316,7 +370,7 @@ export function ApplicationCard({
             </div>
           </motion.div>
 
-        </div>
+        </motion.div>
       </motion.div>
     </aside>
   );
