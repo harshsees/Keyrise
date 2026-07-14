@@ -61,67 +61,87 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
       </div>
 
       <div>
-        <div className="mb-2 flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-[var(--primary)]" />
-          <h1 className="text-2xl font-bold text-[var(--foreground)]">
-            Get a Guaranteed Visa on
-          </h1>
-        </div>
-        <div className="border-l border-slate-200 pl-3">
-          <div className="mt-1.5 space-y-2.5">
+        <div className="relative">
+          {/* Header row with indicator dot */}
+          <div className="flex items-center gap-2.5">
+            <span className="relative z-10 flex h-3 w-3 items-center justify-center rounded-full bg-[var(--primary)]">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
+            </span>
+            <h1 className="text-2xl font-bold text-[var(--foreground)]">
+              Get a Guaranteed Visa on
+            </h1>
+          </div>
+
+          {/* Indented branching container */}
+          <div className="mt-4 space-y-3.5">
             {plans.map((plan, index) => {
               const active = selectedPlan === index;
               return (
-                <motion.button
-                  key={plan.title}
-                  type="button"
-                  onClick={() => onSelectPlan(index)}
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
-                  className={`relative w-full rounded-xl border p-3 text-left transition ${
-                    active
-                      ? "border-[var(--primary)] bg-amber-50 shadow-md shadow-amber-100/50"
-                      : "border-[var(--border)] bg-[#fcfcfc]"
-                  }`}
-                >
-                  {index === 1 && (
-                    <span className="absolute left-3.5 -top-2.5 rounded-full bg-[var(--primary)] px-2.5 py-0.5 text-[11px] font-semibold text-white shadow-sm">
-                      {plan.badge}
-                    </span>
-                  )}
+                <div key={plan.title} className="relative pl-7">
+                  {/* Vertical line segment connecting dot/plans */}
+                  <div
+                    className={`absolute left-[5px] w-0.5 bg-slate-200/80 ${
+                      index === 0 ? "top-[-16px] bottom-[-14px]" : "top-0 h-[24px]"
+                    }`}
+                  />
 
-                  <div className="flex items-start justify-between gap-2.5">
-                    <div>
-                      <p className="text-sm font-semibold text-[var(--foreground)]">{plan.title}</p>
-                      <div className="mt-1 inline-flex items-center gap-1.5 text-xs text-[var(--muted)]">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-[var(--primary)]" />
-                        {plan.timing}
+                  {/* Horizontal branch line connecting to this card */}
+                  <div className="absolute left-[5px] top-[24px] w-[23px] h-0.5 bg-slate-200/80" />
+
+                  <motion.button
+                    type="button"
+                    onClick={() => onSelectPlan(index)}
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    className={`relative w-full rounded-xl border p-3 text-left transition ${
+                      active
+                        ? "border-[var(--primary)] bg-amber-50 shadow-md shadow-amber-100/50"
+                        : "border-[var(--border)] bg-[#fcfcfc]"
+                    }`}
+                  >
+                    {index === 1 && (
+                      <span className="absolute left-3.5 -top-2.5 rounded-full bg-[var(--primary)] px-2.5 py-0.5 text-[11px] font-semibold text-white shadow-sm">
+                        {plan.badge}
+                      </span>
+                    )}
+
+                    <div className="flex items-start justify-between gap-2.5">
+                      <div>
+                        <p className="text-sm font-semibold text-[var(--foreground)]">
+                          {plan.title}
+                        </p>
+                        <div className="mt-1 inline-flex items-center gap-1.5 text-xs text-[var(--muted)]">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-[var(--primary)]" />
+                          {plan.timing}
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xl font-bold text-[var(--foreground)]">{plan.price}</p>
+                        <p className="text-[10px] font-semibold tracking-[0.18em] text-[var(--muted)]">
+                          TO BE PAID NOW
+                        </p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-xl font-bold text-[var(--foreground)]">{plan.price}</p>
-                      <p className="text-[10px] font-semibold tracking-[0.18em] text-[var(--muted)]">
-                        TO BE PAID NOW
-                      </p>
-                    </div>
-                  </div>
 
-                  <div className="mt-3 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 text-xs text-[var(--primary)]">
-                      <span className="rounded-full border border-[var(--border)] bg-white px-2 py-0.5 text-[11px] font-semibold">
-                        View Timeline
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="inline-flex items-center gap-1.5 text-xs text-[var(--primary)]">
+                        <span className="rounded-full border border-[var(--border)] bg-white px-2 py-0.5 text-[11px] font-semibold">
+                          View Timeline
+                        </span>
+                        <ChevronDown className="h-3.5 w-3.5" />
                       </span>
-                      <ChevronDown className="h-3.5 w-3.5" />
-                    </span>
-                    <span
-                      className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
-                        active ? "bg-[var(--primary)] text-white" : "bg-white text-[var(--primary)]"
-                      }`}
-                    >
-                      {active ? "Selected" : "Select"}
-                    </span>
-                  </div>
-                </motion.button>
+                      <span
+                        className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
+                          active
+                            ? "bg-[var(--primary)] text-white"
+                            : "bg-white text-[var(--primary)]"
+                        }`}
+                      >
+                        {active ? "Selected" : "Select"}
+                      </span>
+                    </div>
+                  </motion.button>
+                </div>
               );
             })}
           </div>
