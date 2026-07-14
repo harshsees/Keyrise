@@ -33,9 +33,9 @@ export function VisaInfoAndPlans() {
   return (
     <div className="space-y-3.5">
       <div>
-        <h3 className="text-lg font-semibold text-[var(--foreground)]">
+        <h1 className="text-2xl font-bold text-[var(--foreground)]">
           Dubai visa information
-        </h3>
+        </h1>
         <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
           {visaInfo.map(({ label, value, icon: Icon, accent }) => (
             <motion.div
@@ -61,9 +61,9 @@ export function VisaInfoAndPlans() {
       <div>
         <div className="mb-2 flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-[var(--primary)]" />
-          <h3 className="text-xl font-semibold text-[var(--foreground)]">
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">
             Get a Guaranteed Visa on
-          </h3>
+          </h1>
         </div>
         <div className="border-l border-slate-200 pl-3">
           <div className="mt-1.5 space-y-2.5">
