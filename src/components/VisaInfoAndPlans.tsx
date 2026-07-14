@@ -78,15 +78,33 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
               const active = selectedPlan === index;
               return (
                 <div key={plan.title} className="relative pl-7">
-                  {/* Vertical line segment connecting dot/plans */}
-                  <div
-                    className={`absolute left-[5px] w-0.5 bg-slate-200/80 ${
-                      index === 0 ? "top-[-16px] bottom-[-14px]" : "top-0 h-[24px]"
-                    }`}
-                  />
+                  {/* Curved branch line shown only to the selected plan */}
+                  {selectedPlan === 0 && index === 0 && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute left-[5px] w-[23px] top-[-16px] h-[41px] border-l-2 border-b-2 border-slate-200/80 rounded-bl-[16px] pointer-events-none"
+                    />
+                  )}
 
-                  {/* Horizontal branch line connecting to this card */}
-                  <div className="absolute left-[5px] top-[24px] w-[23px] h-0.5 bg-slate-200/80" />
+                  {selectedPlan === 1 && index === 0 && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute left-[5px] top-[-16px] bottom-[-14px] w-[2px] bg-slate-200/80 pointer-events-none"
+                    />
+                  )}
+
+                  {selectedPlan === 1 && index === 1 && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute left-[5px] w-[23px] top-0 h-[25px] border-l-2 border-b-2 border-slate-200/80 rounded-bl-[16px] pointer-events-none"
+                    />
+                  )}
 
                   <motion.button
                     type="button"
