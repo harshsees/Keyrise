@@ -817,7 +817,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                         setQuizStep(0);
                         setQuizAnswers({});
                       }}
-                      className="text-xs font-semibold tracking-wide transition-colors duration-300 text-white/90 hover:text-white"
+                      className="text-xs font-semibold tracking-wide transition-colors duration-300 text-white hover:text-white/80 underline cursor-pointer"
                     >
                       Retake
                     </button>
