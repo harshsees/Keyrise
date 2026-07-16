@@ -245,9 +245,7 @@ type VisaInfoAndPlansProps = {
             })}
           </div>
         </div>
-      </div>
-
-      {/* All 7 Emirates with 1 Visa Section */}
+      </div>      {/* All 7 Emirates with 1 Visa Section */}
       <div className="pt-8 border-t border-slate-200/50">
         <div className="space-y-6">
           <div>
@@ -263,15 +261,15 @@ type VisaInfoAndPlansProps = {
               {[
                 {
                   name: "Dubai",
-                  image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&h=600&q=80",
+                  image: "/images/emirates/dubai.jpg",
                 },
                 {
                   name: "Abu Dhabi",
-                  image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&h=600&q=80",
+                  image: "/images/emirates/abu-dhabi.png",
                 },
                 {
                   name: "Sharjah",
-                  image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&h=600&q=80",
+                  image: "/images/emirates/sharjah.png",
                 },
               ].map((emirate) => (
                 <div
@@ -298,7 +296,7 @@ type VisaInfoAndPlansProps = {
               {[
                 {
                   name: "Ras Al Khaimah",
-                  image: "https://images.unsplash.com/photo-1582298538104-fc2c3055b089?auto=format&fit=crop&w=400&h=400&q=80",
+                  image: "/images/emirates/ras-al-khaimah.jpg",
                 },
                 {
                   name: "Fujairah",
@@ -310,7 +308,7 @@ type VisaInfoAndPlansProps = {
                 },
                 {
                   name: "Ajman",
-                  image: "https://images.unsplash.com/photo-1578894381163-e72c17f2d45f?auto=format&fit=crop&w=400&h=400&q=80",
+                  image: "/images/emirates/ajman.png",
                 },
               ].map((emirate) => (
                 <div
