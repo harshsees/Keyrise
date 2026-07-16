@@ -635,7 +635,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
             /* Promo Card */
             <div className="w-full max-w-xl bg-white border border-slate-200/60 rounded-3xl p-5 md:p-6 shadow-sm flex items-center justify-between gap-4">
               <div className="space-y-2.5">
-                <p className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Learn Your</p>
+                <p className="text-xs font-bold text-amber-600 uppercase tracking-wider">Learn Your</p>
                 <h3 className="text-xl md:text-2xl font-extrabold text-slate-800 leading-tight">
                   Chances of Approval
                 </h3>
@@ -648,7 +648,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                     setQuizStep(0);
                     setQuizAnswers({});
                   }}
-                  className="inline-flex items-center gap-1 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition mt-2.5 cursor-pointer"
+                  className="inline-flex items-center gap-1 text-sm font-bold text-amber-600 hover:text-amber-800 transition mt-2.5 cursor-pointer"
                 >
                   Evaluate my chances <ChevronRight className="h-4 w-4" />
                 </button>
@@ -664,18 +664,18 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                       cy="50"
                       r="40"
                       fill="none"
-                      stroke="#4f46e5" /* Indigo-600 */
+                      stroke="#d97706" /* Amber-600 */
                       strokeWidth="5"
                       strokeDasharray="1 2.5"
                       strokeDashoffset="15"
                       className="transform -rotate-90 origin-center"
                     />
-                    <text x="50" y="55" textAnchor="middle" className="text-[17px] font-black fill-indigo-700">
+                    <text x="50" y="55" textAnchor="middle" className="text-[17px] font-black fill-amber-700">
                       100%
                     </text>
                   </svg>
                 </div>
-                <span className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-[9.5px] font-bold text-indigo-600 shadow-sm border border-indigo-100/50">
+                <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-[9.5px] font-bold text-amber-600 shadow-sm border border-amber-100/50">
                   Takes 5 seconds
                 </span>
               </div>
@@ -687,7 +687,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                 className="relative flex items-center justify-center w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full shadow-inner transition-all duration-700 ease-out"
                 style={{
                   /* Creates the solid pie-chart progress effect */
-                  background: `conic-gradient(#5448C8 ${(quizStep / 6) * 360}deg, #f8fafc ${(quizStep / 6) * 360}deg)`
+                  background: `conic-gradient(#d97706 ${(quizStep / 6) * 360}deg, #f8fafc ${(quizStep / 6) * 360}deg)`
                 }}
               >
                 {/* Inner masking circle */}
@@ -716,13 +716,13 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                         <div className="space-y-2 flex flex-col">
                           <button
                             onClick={() => handleAnswer(quizQuestions[quizStep].options[0])}
-                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200 bg-white text-xs sm:text-sm font-bold text-slate-600 hover:bg-[#5448C8] hover:text-white hover:border-[#5448C8] transition-all duration-200"
+                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200 bg-white text-xs sm:text-sm font-bold text-slate-600 hover:bg-[#d97706] hover:text-white hover:border-[#d97706] transition-all duration-200"
                           >
                             {quizQuestions[quizStep].options[0]}
                           </button>
                           <button
                             onClick={() => handleAnswer(quizQuestions[quizStep].options[1])}
-                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200 bg-white text-xs sm:text-sm font-bold text-slate-600 hover:bg-[#5448C8] hover:text-white hover:border-[#5448C8] transition-all duration-200"
+                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200 bg-white text-xs sm:text-sm font-bold text-slate-600 hover:bg-[#d97706] hover:text-white hover:border-[#d97706] transition-all duration-200"
                           >
                             {quizQuestions[quizStep].options[1]}
                           </button>
@@ -733,7 +733,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                             <button
                               key={opt}
                               onClick={() => handleAnswer(opt)}
-                              className="py-2.5 rounded-xl border border-slate-200 bg-white text-[10px] sm:text-xs font-bold text-slate-600 hover:bg-[#5448C8] hover:text-white hover:border-[#5448C8] transition-all duration-200 leading-tight flex items-center justify-center px-1"
+                              className="py-2.5 rounded-xl border border-slate-200 bg-white text-[10px] sm:text-xs font-bold text-slate-600 hover:bg-[#d97706] hover:text-white hover:border-[#d97706] transition-all duration-200 leading-tight flex items-center justify-center px-1"
                             >
                               {opt}
                             </button>
@@ -748,19 +748,19 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
           ) : (
             /* Results Screen with Liquid Wave Effect */
             <div className="flex flex-col items-center justify-center py-4">
-              <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full overflow-hidden flex flex-col justify-center items-center p-6 text-center shadow-xl border border-indigo-100 bg-indigo-50/30">
+              <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full overflow-hidden flex flex-col justify-center items-center p-6 text-center shadow-xl border border-amber-100 bg-amber-50/30">
                 
                 {/* Wave container filling corresponding to percentage */}
                 <div
-                  className="absolute bottom-0 left-0 right-0 bg-[#5448C8] transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                  className="absolute bottom-0 left-0 right-0 bg-[#d97706] transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)]"
                   style={{ height: `${percentage}%` }}
                 >
                   {/* Front Wave */}
-                  <svg className="absolute left-0 w-[200%] h-12 -top-10 text-[#5448C8] fill-current animate-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                  <svg className="absolute left-0 w-[200%] h-12 -top-10 text-[#d97706] fill-current animate-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path d="M0,60 C150,100 350,20 500,60 C650,100 850,20 1000,60 C1150,100 1300,20 1450,60 L1450,120 L0,120 Z" />
                   </svg>
                   {/* Back Wave (slightly offset and transparent) */}
-                  <svg className="absolute left-0 w-[200%] h-12 -top-12 text-[#5448C8]/50 fill-current animate-wave-slow opacity-60" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                  <svg className="absolute left-0 w-[200%] h-12 -top-12 text-[#d97706]/50 fill-current animate-wave-slow opacity-60" viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path d="M0,50 C100,20 250,80 400,50 C550,20 700,80 850,50 C1000,20 1150,80 1300,50 L1300,120 L0,120 Z" />
                   </svg>
                 </div>
@@ -776,14 +776,14 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                   </p>
                   <h4
                     className={`text-lg sm:text-xl font-bold transition-colors duration-500 mt-2 ${
-                      percentage > 50 ? "text-indigo-50" : "text-slate-700"
+                      percentage > 50 ? "text-amber-50" : "text-slate-700"
                     }`}
                   >
                     Chances of Approval
                   </h4>
                   <p
                     className={`text-xs sm:text-sm max-w-[240px] transition-colors duration-500 mt-2 leading-relaxed font-medium ${
-                      percentage > 50 ? "text-indigo-100/90" : "text-slate-500"
+                      percentage > 50 ? "text-amber-100/90" : "text-slate-500"
                     }`}
                   >
                     {reason}
@@ -792,11 +792,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                   <div className="mt-6 flex flex-col items-center gap-3 w-full">
                     <button
                       onClick={() => setShowQuiz(false)}
-                      className={`w-3/4 sm:w-2/3 font-bold px-6 py-3 rounded-full shadow-md transition-transform hover:scale-105 active:scale-95 text-sm cursor-pointer ${
-                        percentage > 50 
-                          ? "bg-white text-[#5448C8]" 
-                          : "bg-[#5448C8] text-white"
-                      }`}
+                      className="w-3/4 sm:w-2/3 font-bold px-6 py-3 rounded-full shadow-md transition-transform hover:scale-105 active:scale-95 text-sm cursor-pointer bg-white text-[#d97706]"
                     >
                       Apply anyway
                     </button>
@@ -806,9 +802,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                         setQuizStep(0);
                         setQuizAnswers({});
                       }}
-                      className={`text-xs font-semibold tracking-wide transition-colors duration-300 ${
-                        percentage > 50 ? "text-indigo-200 hover:text-white" : "text-slate-500 hover:text-slate-700"
-                      }`}
+                      className="text-xs font-semibold tracking-wide transition-colors duration-300 text-white/90 hover:text-white"
                     >
                       Retake
                     </button>
