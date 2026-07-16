@@ -1,7 +1,8 @@
 "use client";
 
-import { CheckCircle2, ChevronDown, CalendarDays, FileText, FolderOpen, Smartphone, Clock3, Scan } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { CheckCircle2, ChevronDown, CalendarDays, FileText, FolderOpen, Smartphone, Clock3, Scan, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 
 const plans = [
@@ -22,7 +23,98 @@ const plans = [
 type VisaInfoAndPlansProps = {
   selectedPlan: number;
   onSelectPlan: (index: number) => void;
-};export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlansProps) {
+};
+
+export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlansProps) {
+  // Chances of Approval Section State & Logic
+  const quizQuestions = [
+    {
+      id: 1,
+      num: "01",
+      question: "Have you travelled internationally before?",
+      options: ["Yes", "No"]
+    },
+    {
+      id: 2,
+      num: "02",
+      question: "Have you travelled to AE before?",
+      options: ["Yes", "No"]
+    },
+    {
+      id: 3,
+      num: "03",
+      question: "Have you ever overstayed your visa duration before?",
+      options: ["Yes", "No"]
+    },
+    {
+      id: 4,
+      num: "04",
+      question: "Have you ever been convicted of a crime?",
+      options: ["Yes", "No"]
+    },
+    {
+      id: 5,
+      num: "05",
+      question: "What's your approximate bank balance?",
+      options: ["0 - ₹25,000", "₹25,000 - 50000", "₹50,000 - 75000", "₹75,000+"]
+    },
+    {
+      id: 6,
+      num: "06",
+      question: "Is your passport valid for at least 6 months after your travel date?",
+      options: ["Yes", "No"]
+    }
+  ];
+
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [quizStep, setQuizStep] = useState(0); // 0 to 5 for Q1 to Q6, 6 for results
+  const [quizAnswers, setQuizAnswers] = useState<Record<number, string>>({});
+
+  const handleAnswer = (answer: string) => {
+    setQuizAnswers(prev => ({ ...prev, [quizStep]: answer }));
+    setQuizStep(prev => prev + 1);
+  };
+
+  const calculateResult = () => {
+    let score = 75; // base score
+
+    if (quizAnswers[0] === "Yes") score += 10;
+    else score -= 10;
+
+    if (quizAnswers[1] === "Yes") score += 10;
+
+    if (quizAnswers[2] === "Yes") score -= 45;
+    else score += 5;
+
+    if (quizAnswers[3] === "Yes") score -= 60;
+    else score += 5;
+
+    if (quizAnswers[4] === "0 - ₹25,000") score -= 25;
+    else if (quizAnswers[4] === "₹25,000 - 50000") score -= 5;
+    else if (quizAnswers[4] === "₹50,000 - 75000") score += 5;
+    else if (quizAnswers[4] === "₹75,000+") score += 15;
+
+    if (quizAnswers[5] === "No") score -= 80;
+
+    const finalScore = Math.max(1, Math.min(99, score));
+
+    let reason = "Your profile matches the standard requirements for a high approval rate.";
+    if (quizAnswers[3] === "Yes") {
+      reason = "Criminal record severely impacts visa approval chances.";
+    } else if (quizAnswers[5] === "No") {
+      reason = "Passport must be valid for at least 6 months after your travel date.";
+    } else if (quizAnswers[2] === "Yes") {
+      reason = "Overstaying your visa duration severely impacts future applications.";
+    } else if (quizAnswers[4] === "0 - ₹25,000") {
+      reason = "Low bank balance may impact approval chances.";
+    } else if (quizAnswers[0] === "No" && quizAnswers[1] === "No") {
+      reason = "First-time international travelers may require additional verification.";
+    }
+
+    return { percentage: finalScore, reason };
+  };
+
+  const { percentage, reason } = calculateResult();
   return (
     <div className="space-y-8 md:space-y-10">
       <div>
@@ -529,6 +621,209 @@ type VisaInfoAndPlansProps = {
           </div>
         </div>
       </div>
+
+      {/* Chances of Approval Section */}
+      <div className="pt-8 border-t border-slate-200/50 space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
+            Want to know if your will be approved?
+          </h2>
+        </div>
+
+        <div className="flex items-center justify-center p-4">
+          {!showQuiz ? (
+            /* Promo Card */
+            <div className="w-full max-w-xl bg-slate-50/50 border border-slate-200/60 rounded-3xl p-5 md:p-6 shadow-sm flex items-center justify-between gap-4">
+              <div className="space-y-2.5">
+                <p className="text-xs font-bold text-amber-600 uppercase tracking-wider">Learn Your</p>
+                <h3 className="text-xl md:text-2xl font-extrabold text-[var(--foreground)] leading-tight">
+                  Chances of Approval
+                </h3>
+                <p className="text-sm text-[var(--muted)]">
+                  Answer 6 questions to know your chances
+                </p>
+                <button
+                  onClick={() => {
+                    setShowQuiz(true);
+                    setQuizStep(0);
+                    setQuizAnswers({});
+                  }}
+                  className="inline-flex items-center gap-1 text-sm font-bold text-amber-600 hover:text-amber-700 transition mt-2.5 cursor-pointer"
+                >
+                  Evaluate my chances <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+
+              <div className="flex flex-col items-center gap-3 pr-2 shrink-0">
+                {/* Dotted gauge wheel */}
+                <div className="relative w-24 h-24 flex items-center justify-center">
+                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#e2e8f0" stroke-width="5" stroke-dasharray="1 2.5" />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="#d97706"
+                      stroke-width="5"
+                      stroke-dasharray="1 2.5"
+                      stroke-dashoffset="15"
+                      className="transform -rotate-90 origin-center"
+                    />
+                    <text x="50" y="55" textAnchor="middle" className="text-[17px] font-black fill-amber-700/80">
+                      100%
+                    </text>
+                  </svg>
+                </div>
+                <span className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-[9.5px] font-bold text-indigo-600 shadow-sm border border-indigo-100/50">
+                  Takes 5 seconds
+                </span>
+              </div>
+            </div>
+          ) : quizStep < 6 ? (
+            /* Active Quiz Interface */
+            <div className="flex flex-col items-center justify-center py-4">
+              <div
+                className="relative flex items-center justify-center w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full shadow-inner transition-all duration-700 ease-out"
+                style={{
+                  background: `conic-gradient(#d97706 ${(quizStep / 6) * 360}deg, #f1f5f9 ${(quizStep / 6) * 360}deg)`
+                }}
+              >
+                {/* Inner masking circle */}
+                <div className="absolute inset-3.5 bg-slate-50/30 rounded-full" />
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={quizStep}
+                    initial={{ opacity: 0, scale: 0.92, y: 5 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.92, y: -5 }}
+                    transition={{ duration: 0.3 }}
+                    className="relative z-10 w-[240px] sm:w-[270px] bg-white rounded-2xl shadow-xl border border-slate-100 p-5 sm:p-6 flex flex-col justify-between h-[250px] sm:h-[285px]"
+                  >
+                    <div>
+                      <p className="text-4xl sm:text-5xl font-extrabold text-slate-100 leading-none">
+                        {quizQuestions[quizStep].num}
+                      </p>
+                      <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-4 leading-snug">
+                        {quizQuestions[quizStep].question}
+                      </h4>
+                    </div>
+
+                    <div className="space-y-2">
+                      {quizQuestions[quizStep].options.length === 2 ? (
+                        <div className="space-y-2">
+                          <button
+                            onClick={() => handleAnswer(quizQuestions[quizStep].options[0])}
+                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs sm:text-sm font-bold text-amber-700 hover:bg-amber-50/50 hover:border-amber-200 transition"
+                          >
+                            {quizQuestions[quizStep].options[0]}
+                          </button>
+                          <button
+                            onClick={() => handleAnswer(quizQuestions[quizStep].options[1])}
+                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs sm:text-sm font-bold text-amber-700 hover:bg-amber-50/50 hover:border-amber-200 transition"
+                          >
+                            {quizQuestions[quizStep].options[1]}
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-2 gap-2">
+                          {quizQuestions[quizStep].options.map(opt => (
+                            <button
+                              key={opt}
+                              onClick={() => handleAnswer(opt)}
+                              className="py-2.5 rounded-xl border border-slate-200/80 bg-white text-[10px] sm:text-xs font-bold text-amber-700 hover:bg-amber-50/50 hover:border-amber-200 transition leading-tight flex items-center justify-center px-1"
+                            >
+                              {opt}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          ) : (
+            /* Results Screen with Wave Effect */
+            <div className="flex flex-col items-center justify-center py-4">
+              <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full overflow-hidden flex flex-col justify-center items-center p-6 text-center shadow-lg border border-amber-200/30 bg-amber-50/60">
+                {/* Wave container filling corresponding to percentage */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 bg-amber-600/90 transition-all duration-1000 ease-out"
+                  style={{ height: `${percentage}%` }}
+                >
+                  {/* Wave SVG elements moving horizontally */}
+                  <svg className="absolute left-0 w-[200%] h-10 -top-8 text-amber-600/90 fill-current animate-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,60 C150,100 350,20 500,60 C650,100 850,20 1000,60 C1150,100 1300,20 1450,60 L1450,120 L0,120 Z" />
+                  </svg>
+                  <svg className="absolute left-0 w-[200%] h-10 -top-8 text-amber-500/50 fill-current animate-wave-slow opacity-40" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,50 C100,20 250,80 400,50 C550,20 700,80 850,50 C1000,20 1150,80 1300,50 L1300,120 L0,120 Z" />
+                  </svg>
+                </div>
+
+                {/* Info Text Layer overlay on top of wave */}
+                <div className="relative z-10 flex flex-col items-center justify-center h-full">
+                  <p
+                    className={`text-5xl sm:text-6xl font-black transition-colors duration-500 ${
+                      percentage > 50 ? "text-white" : "text-amber-950"
+                    }`}
+                  >
+                    {percentage}%
+                  </p>
+                  <h4
+                    className={`text-base sm:text-lg font-bold transition-colors duration-500 mt-1 ${
+                      percentage > 50 ? "text-white/95" : "text-amber-900/90"
+                    }`}
+                  >
+                    Chances of Approval
+                  </h4>
+                  <p
+                    className={`text-[11px] sm:text-xs max-w-[220px] transition-colors duration-500 mt-2.5 leading-relaxed font-semibold ${
+                      percentage > 50 ? "text-amber-50/90" : "text-amber-900/70"
+                    }`}
+                  >
+                    {reason}
+                  </p>
+
+                  <button
+                    onClick={() => setShowQuiz(false)}
+                    className="mt-6 bg-white text-amber-700 font-bold px-6 py-2.5 rounded-full shadow-sm hover:shadow-md transition text-xs sm:text-sm cursor-pointer"
+                  >
+                    Apply anyway
+                  </button>
+                  
+                  <button
+                    onClick={() => {
+                      setQuizStep(0);
+                      setQuizAnswers({});
+                    }}
+                    className={`mt-3 text-[11px] sm:text-xs font-bold underline transition-colors duration-500 ${
+                      percentage > 50 ? "text-white/80 hover:text-white" : "text-amber-700/80 hover:text-amber-700"
+                    }`}
+                  >
+                    Retake
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Global CSS Style tag for wave keyframes */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes wave-move {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-wave {
+          animation: wave-move 8s linear infinite;
+        }
+        .animate-wave-slow {
+          animation: wave-move 12s linear infinite;
+        }
+      `}} />
     </div>
   );
 }
