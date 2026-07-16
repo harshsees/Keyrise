@@ -623,7 +623,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
       </div>
 
       {/* Chances of Approval Section */}
-      <div className="pt-8 border-t border-slate-200/50 space-y-6">
+      <div className="pt-8 border-t border-slate-200/50 space-y-6 font-sans">
         <div>
           <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
             Want to know if your will be approved?
@@ -633,13 +633,13 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
         <div className="flex items-center justify-center p-4">
           {!showQuiz ? (
             /* Promo Card */
-            <div className="w-full max-w-xl bg-slate-50/50 border border-slate-200/60 rounded-3xl p-5 md:p-6 shadow-sm flex items-center justify-between gap-4">
+            <div className="w-full max-w-xl bg-white border border-slate-200/60 rounded-3xl p-5 md:p-6 shadow-sm flex items-center justify-between gap-4">
               <div className="space-y-2.5">
-                <p className="text-xs font-bold text-amber-600 uppercase tracking-wider">Learn Your</p>
-                <h3 className="text-xl md:text-2xl font-extrabold text-[var(--foreground)] leading-tight">
+                <p className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Learn Your</p>
+                <h3 className="text-xl md:text-2xl font-extrabold text-slate-800 leading-tight">
                   Chances of Approval
                 </h3>
-                <p className="text-sm text-[var(--muted)]">
+                <p className="text-sm text-slate-500">
                   Answer 6 questions to know your chances
                 </p>
                 <button
@@ -648,7 +648,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                     setQuizStep(0);
                     setQuizAnswers({});
                   }}
-                  className="inline-flex items-center gap-1 text-sm font-bold text-amber-600 hover:text-amber-700 transition mt-2.5 cursor-pointer"
+                  className="inline-flex items-center gap-1 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition mt-2.5 cursor-pointer"
                 >
                   Evaluate my chances <ChevronRight className="h-4 w-4" />
                 </button>
@@ -658,19 +658,19 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                 {/* Dotted gauge wheel */}
                 <div className="relative w-24 h-24 flex items-center justify-center">
                   <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="40" fill="none" stroke="#e2e8f0" stroke-width="5" stroke-dasharray="1 2.5" />
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#e2e8f0" strokeWidth="5" strokeDasharray="1 2.5" />
                     <circle
                       cx="50"
                       cy="50"
                       r="40"
                       fill="none"
-                      stroke="#d97706"
-                      stroke-width="5"
-                      stroke-dasharray="1 2.5"
-                      stroke-dashoffset="15"
+                      stroke="#4f46e5" /* Indigo-600 */
+                      strokeWidth="5"
+                      strokeDasharray="1 2.5"
+                      strokeDashoffset="15"
                       className="transform -rotate-90 origin-center"
                     />
-                    <text x="50" y="55" textAnchor="middle" className="text-[17px] font-black fill-amber-700/80">
+                    <text x="50" y="55" textAnchor="middle" className="text-[17px] font-black fill-indigo-700">
                       100%
                     </text>
                   </svg>
@@ -686,42 +686,43 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
               <div
                 className="relative flex items-center justify-center w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full shadow-inner transition-all duration-700 ease-out"
                 style={{
-                  background: `conic-gradient(#d97706 ${(quizStep / 6) * 360}deg, #f1f5f9 ${(quizStep / 6) * 360}deg)`
+                  /* Creates the solid pie-chart progress effect */
+                  background: `conic-gradient(#5448C8 ${(quizStep / 6) * 360}deg, #f8fafc ${(quizStep / 6) * 360}deg)`
                 }}
               >
                 {/* Inner masking circle */}
-                <div className="absolute inset-3.5 bg-slate-50/30 rounded-full" />
+                <div className="absolute inset-3.5 bg-slate-50/80 rounded-full" />
 
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={quizStep}
-                    initial={{ opacity: 0, scale: 0.92, y: 5 }}
+                    initial={{ opacity: 0, scale: 0.92, y: 15 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.92, y: -5 }}
+                    exit={{ opacity: 0, scale: 0.92, y: -15 }}
                     transition={{ duration: 0.3 }}
-                    className="relative z-10 w-[240px] sm:w-[270px] bg-white rounded-2xl shadow-xl border border-slate-100 p-5 sm:p-6 flex flex-col justify-between h-[250px] sm:h-[285px]"
+                    className="relative z-10 w-[240px] sm:w-[270px] bg-white rounded-2xl shadow-xl border border-slate-100 p-5 sm:p-6 flex flex-col justify-between h-[260px] sm:h-[285px]"
                   >
                     <div>
-                      <p className="text-4xl sm:text-5xl font-extrabold text-slate-100 leading-none">
+                      <p className="text-4xl sm:text-5xl font-extrabold text-slate-200 leading-none">
                         {quizQuestions[quizStep].num}
                       </p>
-                      <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-4 leading-snug">
+                      <h4 className="text-sm sm:text-base font-bold text-slate-800 mt-4 leading-snug">
                         {quizQuestions[quizStep].question}
                       </h4>
                     </div>
 
                     <div className="space-y-2">
                       {quizQuestions[quizStep].options.length === 2 ? (
-                        <div className="space-y-2">
+                        <div className="space-y-2 flex flex-col">
                           <button
                             onClick={() => handleAnswer(quizQuestions[quizStep].options[0])}
-                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs sm:text-sm font-bold text-amber-700 hover:bg-amber-50/50 hover:border-amber-200 transition"
+                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200 bg-white text-xs sm:text-sm font-bold text-slate-600 hover:bg-[#5448C8] hover:text-white hover:border-[#5448C8] transition-all duration-200"
                           >
                             {quizQuestions[quizStep].options[0]}
                           </button>
                           <button
                             onClick={() => handleAnswer(quizQuestions[quizStep].options[1])}
-                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200/80 bg-white text-xs sm:text-sm font-bold text-amber-700 hover:bg-amber-50/50 hover:border-amber-200 transition"
+                            className="w-full py-2 sm:py-2.5 rounded-xl border border-slate-200 bg-white text-xs sm:text-sm font-bold text-slate-600 hover:bg-[#5448C8] hover:text-white hover:border-[#5448C8] transition-all duration-200"
                           >
                             {quizQuestions[quizStep].options[1]}
                           </button>
@@ -732,7 +733,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                             <button
                               key={opt}
                               onClick={() => handleAnswer(opt)}
-                              className="py-2.5 rounded-xl border border-slate-200/80 bg-white text-[10px] sm:text-xs font-bold text-amber-700 hover:bg-amber-50/50 hover:border-amber-200 transition leading-tight flex items-center justify-center px-1"
+                              className="py-2.5 rounded-xl border border-slate-200 bg-white text-[10px] sm:text-xs font-bold text-slate-600 hover:bg-[#5448C8] hover:text-white hover:border-[#5448C8] transition-all duration-200 leading-tight flex items-center justify-center px-1"
                             >
                               {opt}
                             </button>
@@ -745,65 +746,73 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
               </div>
             </div>
           ) : (
-            /* Results Screen with Wave Effect */
+            /* Results Screen with Liquid Wave Effect */
             <div className="flex flex-col items-center justify-center py-4">
-              <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full overflow-hidden flex flex-col justify-center items-center p-6 text-center shadow-lg border border-amber-200/30 bg-amber-50/60">
+              <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full overflow-hidden flex flex-col justify-center items-center p-6 text-center shadow-xl border border-indigo-100 bg-indigo-50/30">
+                
                 {/* Wave container filling corresponding to percentage */}
                 <div
-                  className="absolute bottom-0 left-0 right-0 bg-amber-600/90 transition-all duration-1000 ease-out"
+                  className="absolute bottom-0 left-0 right-0 bg-[#5448C8] transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)]"
                   style={{ height: `${percentage}%` }}
                 >
-                  {/* Wave SVG elements moving horizontally */}
-                  <svg className="absolute left-0 w-[200%] h-10 -top-8 text-amber-600/90 fill-current animate-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                  {/* Front Wave */}
+                  <svg className="absolute left-0 w-[200%] h-12 -top-10 text-[#5448C8] fill-current animate-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path d="M0,60 C150,100 350,20 500,60 C650,100 850,20 1000,60 C1150,100 1300,20 1450,60 L1450,120 L0,120 Z" />
                   </svg>
-                  <svg className="absolute left-0 w-[200%] h-10 -top-8 text-amber-500/50 fill-current animate-wave-slow opacity-40" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                  {/* Back Wave (slightly offset and transparent) */}
+                  <svg className="absolute left-0 w-[200%] h-12 -top-12 text-[#5448C8]/50 fill-current animate-wave-slow opacity-60" viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path d="M0,50 C100,20 250,80 400,50 C550,20 700,80 850,50 C1000,20 1150,80 1300,50 L1300,120 L0,120 Z" />
                   </svg>
                 </div>
 
                 {/* Info Text Layer overlay on top of wave */}
-                <div className="relative z-10 flex flex-col items-center justify-center h-full">
+                <div className="relative z-10 flex flex-col items-center justify-center h-full w-full pt-4">
                   <p
-                    className={`text-5xl sm:text-6xl font-black transition-colors duration-500 ${
-                      percentage > 50 ? "text-white" : "text-amber-950"
+                    className={`text-6xl sm:text-7xl font-black transition-colors duration-500 ${
+                      percentage > 50 ? "text-white" : "text-slate-800"
                     }`}
                   >
                     {percentage}%
                   </p>
                   <h4
-                    className={`text-base sm:text-lg font-bold transition-colors duration-500 mt-1 ${
-                      percentage > 50 ? "text-white/95" : "text-amber-900/90"
+                    className={`text-lg sm:text-xl font-bold transition-colors duration-500 mt-2 ${
+                      percentage > 50 ? "text-indigo-50" : "text-slate-700"
                     }`}
                   >
                     Chances of Approval
                   </h4>
                   <p
-                    className={`text-[11px] sm:text-xs max-w-[220px] transition-colors duration-500 mt-2.5 leading-relaxed font-semibold ${
-                      percentage > 50 ? "text-amber-50/90" : "text-amber-900/70"
+                    className={`text-xs sm:text-sm max-w-[240px] transition-colors duration-500 mt-2 leading-relaxed font-medium ${
+                      percentage > 50 ? "text-indigo-100/90" : "text-slate-500"
                     }`}
                   >
                     {reason}
                   </p>
 
-                  <button
-                    onClick={() => setShowQuiz(false)}
-                    className="mt-6 bg-white text-amber-700 font-bold px-6 py-2.5 rounded-full shadow-sm hover:shadow-md transition text-xs sm:text-sm cursor-pointer"
-                  >
-                    Apply anyway
-                  </button>
-                  
-                  <button
-                    onClick={() => {
-                      setQuizStep(0);
-                      setQuizAnswers({});
-                    }}
-                    className={`mt-3 text-[11px] sm:text-xs font-bold underline transition-colors duration-500 ${
-                      percentage > 50 ? "text-white/80 hover:text-white" : "text-amber-700/80 hover:text-amber-700"
-                    }`}
-                  >
-                    Retake
-                  </button>
+                  <div className="mt-6 flex flex-col items-center gap-3 w-full">
+                    <button
+                      onClick={() => setShowQuiz(false)}
+                      className={`w-3/4 sm:w-2/3 font-bold px-6 py-3 rounded-full shadow-md transition-transform hover:scale-105 active:scale-95 text-sm cursor-pointer ${
+                        percentage > 50 
+                          ? "bg-white text-[#5448C8]" 
+                          : "bg-[#5448C8] text-white"
+                      }`}
+                    >
+                      Apply anyway
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        setQuizStep(0);
+                        setQuizAnswers({});
+                      }}
+                      className={`text-xs font-semibold tracking-wide transition-colors duration-300 ${
+                        percentage > 50 ? "text-indigo-200 hover:text-white" : "text-slate-500 hover:text-slate-700"
+                      }`}
+                    >
+                      Retake
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -818,10 +827,10 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
           100% { transform: translateX(-50%); }
         }
         .animate-wave {
-          animation: wave-move 8s linear infinite;
+          animation: wave-move 6s linear infinite;
         }
         .animate-wave-slow {
-          animation: wave-move 12s linear infinite;
+          animation: wave-move 10s linear infinite;
         }
       `}} />
     </div>
