@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CheckCircle2, ChevronDown, CalendarDays, FileText, FolderOpen, Smartphone, Clock3, Scan, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -115,6 +115,21 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
   };
 
   const { percentage, reason } = calculateResult();
+
+  const [animatedHeight, setAnimatedHeight] = useState(0);
+
+  useEffect(() => {
+    if (quizStep === 6) {
+      setAnimatedHeight(0);
+      const timer = setTimeout(() => {
+        setAnimatedHeight(percentage);
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      setAnimatedHeight(0);
+    }
+  }, [quizStep, percentage]);
+
   return (
     <div className="space-y-8 md:space-y-10">
       <div>
@@ -768,7 +783,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                 {/* Wave container filling corresponding to percentage */}
                 <div
                   className="absolute bottom-0 left-0 right-0 bg-[#d97706] transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)]"
-                  style={{ height: `${percentage}%` }}
+                  style={{ height: `${animatedHeight}%` }}
                 >
                   {/* Front Wave */}
                   <svg className="absolute left-0 w-[200%] h-12 -top-10 text-[#d97706] fill-current animate-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
