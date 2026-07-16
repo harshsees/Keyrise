@@ -130,6 +130,32 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
     }
   }, [quizStep, percentage]);
 
+  // Statistics Section State & Logic
+  const [statsTab, setStatsTab] = useState<"processingTime" | "approvalRating">("processingTime");
+  const [hoveredPointIndex, setHoveredPointIndex] = useState<number | null>(null);
+  const [tooltipState, setTooltipState] = useState<{ x: number; y: number; show: boolean }>({ x: 0, y: 0, show: false });
+  const [hasHoveredChart, setHasHoveredChart] = useState(false);
+
+  const statsProcessingData = [
+    { day: "Thu", date: "Thursday, 9 July", valueText: "3 Days 20 Hrs 0 Mins", valueHrs: 92 },
+    { day: "Fri", date: "Friday, 10 July", valueText: "3 Days 13 Hrs 0 Mins", valueHrs: 85 },
+    { day: "Sat", date: "Saturday, 11 July", valueText: "4 Days 10 Hrs 42 Mins", valueHrs: 106.7 },
+    { day: "Sun", date: "Sunday, 12 July", valueText: "4 Days 6 Hrs 0 Mins", valueHrs: 102 },
+    { day: "Mon", date: "Monday, 13 July", valueText: "3 Days 16 Hrs 0 Mins", valueHrs: 88 },
+    { day: "Tue", date: "Tuesday, 14 July", valueText: "3 Days 19 Hrs 0 Mins", valueHrs: 91 },
+    { day: "Wed", date: "Wednesday, 15 July", valueText: "4 Days 9 Hrs 0 Mins", valueHrs: 105 },
+  ];
+
+  const statsApprovalData = [
+    { day: "Thu", date: "Thursday, 9 July", valueText: "96.0% Approval Rate", valueHrs: 96 },
+    { day: "Fri", date: "Friday, 10 July", valueText: "95.0% Approval Rate", valueHrs: 95 },
+    { day: "Sat", date: "Saturday, 11 July", valueText: "98.0% Approval Rate", valueHrs: 98 },
+    { day: "Sun", date: "Sunday, 12 July", valueText: "97.5% Approval Rate", valueHrs: 97.5 },
+    { day: "Mon", date: "Monday, 13 July", valueText: "94.0% Approval Rate", valueHrs: 94 },
+    { day: "Tue", date: "Tuesday, 14 July", valueText: "96.5% Approval Rate", valueHrs: 96.5 },
+    { day: "Wed", date: "Wednesday, 15 July", valueText: "99.0% Approval Rate", valueHrs: 99 },
+  ];
+
   return (
     <div className="space-y-8 md:space-y-10">
       <div>
@@ -222,7 +248,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
 
             {/* 5. Method */}
             <div className="flex items-center gap-3.5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
                 <FolderOpen className="h-5.5 w-5.5" />
               </div>
               <div>
@@ -841,6 +867,283 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
               </div>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Statistics Section */}
+      <div className="pt-8 border-t border-slate-200/50 space-y-6 font-sans">
+        <div className="relative inline-block">
+          <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
+            Statistics on
+          </h2>
+          <div className="absolute left-0 bottom-0 h-0.5 w-12 bg-[#d97706]" />
+        </div>
+
+        <div className="w-full bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+          {/* Tab Headers */}
+          <div className="flex border-b border-slate-100 px-6">
+            <button
+              onClick={() => {
+                setStatsTab("processingTime");
+                setHoveredPointIndex(null);
+                setHasHoveredChart(false);
+              }}
+              className={`py-4 text-xs font-bold tracking-wider relative transition-colors duration-200 cursor-pointer mr-8 ${
+                statsTab === "processingTime" ? "text-[#d97706]" : "text-slate-500 hover:text-slate-800"
+              }`}
+            >
+              VISA PROCESSING TIME
+              {statsTab === "processingTime" && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.75 bg-[#d97706]" />
+              )}
+            </button>
+            <button
+              onClick={() => {
+                setStatsTab("approvalRating");
+                setHoveredPointIndex(null);
+                setHasHoveredChart(false);
+              }}
+              className={`py-4 text-xs font-bold tracking-wider relative transition-colors duration-200 cursor-pointer ${
+                statsTab === "approvalRating" ? "text-[#d97706]" : "text-slate-500 hover:text-slate-800"
+              }`}
+            >
+              APPROVAL RATING
+              {statsTab === "approvalRating" && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.75 bg-[#d97706]" />
+              )}
+            </button>
+          </div>
+
+          {/* Inner Panels */}
+          <div className="grid grid-cols-1 md:grid-cols-12">
+            {/* Left Panel */}
+            <div className="md:col-span-4 bg-slate-50/50 p-6 md:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-100 min-h-[220px]">
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-slate-800">What is this?</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {statsTab === "processingTime"
+                    ? "This shows the average time a visa decision took to be delivered on"
+                    : "This shows the average approval rating for visa applications delivered on"}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm font-bold text-slate-700">
+                  {hoveredPointIndex !== null
+                    ? (statsTab === "processingTime" ? statsProcessingData[hoveredPointIndex].date : statsApprovalData[hoveredPointIndex].date)
+                    : "Monday, 20 July"}
+                </p>
+                <div className="h-px bg-slate-200/60 w-8 my-2" />
+                <p className="text-xl font-extrabold text-[#d97706]">
+                  {hoveredPointIndex !== null
+                    ? (statsTab === "processingTime" ? statsProcessingData[hoveredPointIndex].valueText : statsApprovalData[hoveredPointIndex].valueText)
+                    : (statsTab === "processingTime" ? "4 Days 1 Hr 50 Mins" : "98.5% Approval Rate")}
+                </p>
+              </div>
+            </div>
+
+            {/* Right Chart Area */}
+            <div className="md:col-span-8 p-6 md:p-8 relative flex flex-col justify-between">
+              {/* Chart Grid Lines & SVG Graph */}
+              <div className="relative h-[200px] w-full select-none">
+                {/* Horizontal grid lines with labels on the right */}
+                <div className="absolute inset-0 flex flex-col justify-between pointer-events-none text-[10px] font-bold text-slate-400/80">
+                  {statsTab === "processingTime" ? (
+                    <>
+                      <div className="w-full flex items-center justify-between border-b border-dashed border-slate-100 pb-1">
+                        <span />
+                        <span className="pr-1 shrink-0">120 hr</span>
+                      </div>
+                      <div className="w-full flex items-center justify-between border-b border-dashed border-slate-100 pb-1">
+                        <span />
+                        <span className="pr-1 shrink-0">90 hr</span>
+                      </div>
+                      <div className="w-full flex items-center justify-between border-b border-dashed border-slate-100 pb-1">
+                        <span />
+                        <span className="pr-1 shrink-0">60 hr</span>
+                      </div>
+                      <div className="w-full flex items-center justify-between border-b border-dashed border-slate-100 pb-1">
+                        <span />
+                        <span className="pr-1 shrink-0">30 hr</span>
+                      </div>
+                      <div className="w-full flex items-center justify-between pt-1">
+                        <span />
+                        <span className="pr-1 shrink-0">0 hr</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="w-full flex items-center justify-between border-b border-dashed border-slate-100 pb-1">
+                        <span />
+                        <span className="pr-1 shrink-0">100%</span>
+                      </div>
+                      <div className="w-full flex items-center justify-between border-b border-dashed border-slate-100 pb-1">
+                        <span />
+                        <span className="pr-1 shrink-0">97.5%</span>
+                      </div>
+                      <div className="w-full flex items-center justify-between border-b border-dashed border-slate-100 pb-1">
+                        <span />
+                        <span className="pr-1 shrink-0">95%</span>
+                      </div>
+                      <div className="w-full flex items-center justify-between border-b border-dashed border-slate-100 pb-1">
+                        <span />
+                        <span className="pr-1 shrink-0">92.5%</span>
+                      </div>
+                      <div className="w-full flex items-center justify-between pt-1">
+                        <span />
+                        <span className="pr-1 shrink-0">90%</span>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {/* SVG Graph Drawing */}
+                <svg
+                  className="absolute inset-0 w-full h-full overflow-visible z-10"
+                  viewBox="0 0 500 200"
+                  preserveAspectRatio="none"
+                  onMouseMove={(e) => {
+                    if (!hasHoveredChart) {
+                      setHasHoveredChart(true);
+                    }
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // relative X
+                    const y = e.clientY - rect.top; // relative Y
+
+                    // Find nearest point index based on SVG width
+                    const svgWidth = rect.width;
+                    const relativeX = (x / svgWidth) * 500;
+                    
+                    // X-coordinates: Thu=40, Fri=110, Sat=180, Sun=250, Mon=320, Tue=390, Wed=460
+                    const xCoords = [40, 110, 180, 250, 320, 390, 460];
+                    let nearestIndex = 0;
+                    let minDiff = Infinity;
+                    xCoords.forEach((coord, index) => {
+                      const diff = Math.abs(relativeX - coord);
+                      if (diff < minDiff) {
+                        minDiff = diff;
+                        nearestIndex = index;
+                      }
+                    });
+
+                    setHoveredPointIndex(nearestIndex);
+                    // Tooltip follows actual mouse screen coordinates, but offset it
+                    setTooltipState({
+                      x: e.clientX - rect.left,
+                      y: e.clientY - rect.top - 70, // position above cursor
+                      show: true
+                    });
+                  }}
+                  onMouseLeave={() => {
+                    setHoveredPointIndex(null);
+                    setTooltipState(prev => ({ ...prev, show: false }));
+                  }}
+                >
+                  <defs>
+                    <clipPath id="chart-clip">
+                      <rect
+                        x="0"
+                        y="0"
+                        height="200"
+                        width={hasHoveredChart ? 500 : 0}
+                        className="transition-all duration-[1200ms] ease-out"
+                      />
+                    </clipPath>
+                  </defs>
+
+                  {/* Dotted path curve */}
+                  {statsTab === "processingTime" ? (
+                    <path
+                      d="M 40 46.7 C 75 50, 75 58.3, 110 58.3 C 145 58.3, 145 22.2, 180 22.2 C 215 22.2, 215 30, 250 30 C 285 30, 285 53.3, 320 53.3 C 355 53.3, 355 48.3, 390 48.3 C 425 48.3, 425 25, 460 25"
+                      fill="none"
+                      stroke="#d97706"
+                      strokeWidth="2.5"
+                      strokeDasharray="4 4"
+                      clipPath="url(#chart-clip)"
+                      className="transition-all duration-300"
+                    />
+                  ) : (
+                    <path
+                      d="M 40 80 C 75 90, 75 100, 110 100 C 145 100, 145 40, 180 40 C 215 40, 215 50, 250 50 C 285 50, 285 120, 320 120 C 355 120, 355 70, 390 70 C 425 70, 425 20, 460 20"
+                      fill="none"
+                      stroke="#d97706"
+                      strokeWidth="2.5"
+                      strokeDasharray="4 4"
+                      clipPath="url(#chart-clip)"
+                      className="transition-all duration-300"
+                    />
+                  )}
+
+                  {/* Vertical Tracking Line & Bullet Point when hovered */}
+                  {hoveredPointIndex !== null && (() => {
+                    const xCoords = [40, 110, 180, 250, 320, 390, 460];
+                    // YCoords for ProcessingTime
+                    const yCoordsProcessing = [46.7, 58.3, 22.2, 30, 53.3, 48.3, 25];
+                    // YCoords for ApprovalRating
+                    const yCoordsApproval = [80, 100, 40, 50, 120, 70, 20];
+
+                    const activeX = xCoords[hoveredPointIndex];
+                    const activeY = statsTab === "processingTime" ? yCoordsProcessing[hoveredPointIndex] : yCoordsApproval[hoveredPointIndex];
+
+                    return (
+                      <>
+                        {/* Smooth vertical tracking line */}
+                        <line
+                          x1={activeX}
+                          y1="0"
+                          x2={activeX}
+                          y2="200"
+                          stroke="#d97706"
+                          strokeWidth="1.5"
+                          pointerEvents="none"
+                        />
+                        {/* Glowing tracking dot */}
+                        <circle
+                          cx={activeX}
+                          cy={activeY}
+                          r="5.5"
+                          fill="#d97706"
+                          stroke="white"
+                          strokeWidth="2"
+                          pointerEvents="none"
+                          className="shadow-sm"
+                        />
+                      </>
+                    );
+                  })()}
+                </svg>
+
+                {/* Floating dynamic popup tooltip following cursor */}
+                {tooltipState.show && hoveredPointIndex !== null && (
+                  <div
+                    className="absolute bg-white border border-slate-100 rounded-2xl p-3.5 shadow-xl pointer-events-none z-30 flex flex-col gap-1 transition-all duration-75 ease-out select-none min-w-[170px]"
+                    style={{
+                      left: `${tooltipState.x - 85}px`, // center the popup box horizontally
+                      top: `${tooltipState.y}px`
+                    }}
+                  >
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider leading-none">
+                      {statsTab === "processingTime" ? statsProcessingData[hoveredPointIndex].date : statsApprovalData[hoveredPointIndex].date}
+                    </p>
+                    <p className="text-xs font-black text-[#d97706] leading-none mt-1">
+                      {statsTab === "processingTime" ? statsProcessingData[hoveredPointIndex].valueText : statsApprovalData[hoveredPointIndex].valueText}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* X-Axis Labels */}
+              <div className="flex justify-between items-center text-[11px] font-bold text-slate-500 mt-4 px-2 select-none">
+                <span className="w-10 text-center">Thu</span>
+                <span className="w-10 text-center">Fri</span>
+                <span className="w-10 text-center">Sat</span>
+                <span className="w-10 text-center">Sun</span>
+                <span className="w-10 text-center">Mon</span>
+                <span className="w-10 text-center">Tue</span>
+                <span className="w-10 text-center">Wed</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
