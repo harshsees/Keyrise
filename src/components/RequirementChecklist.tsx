@@ -37,16 +37,24 @@ export function RequirementChecklist({ className }: { className?: string }) {
       <p className="mt-3 max-w-2xl text-[var(--muted)]">
         Keep these details ready for faster application processing.
       </p>
-      <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
         {requirements.map(({ title, desc, icon: Icon }) => (
-          <article
+          <div
             key={title}
-            className="rounded-2xl border border-[var(--border)] bg-white p-5 shadow-sm"
+            className="group flex gap-4.5 p-2 rounded-2xl transition duration-300 hover:bg-slate-50/60"
           >
-            <Icon className="mb-3 h-5 w-5 text-[var(--primary)]" />
-            <h3 className="text-lg font-semibold text-[var(--foreground)]">{title}</h3>
-            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{desc}</p>
-          </article>
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-[var(--primary)] transition-transform duration-300 group-hover:scale-110">
+              <Icon className="h-6 w-6" />
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-[var(--foreground)] tracking-tight transition-colors duration-200 group-hover:text-[var(--primary)]">
+                {title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+                {desc}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
     </section>
