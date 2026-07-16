@@ -137,13 +137,13 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
   const [hasHoveredChart, setHasHoveredChart] = useState(false);
 
   const statsProcessingData = [
-    { day: "Thu", date: "Thursday, 9 July", valueText: "3 Days 20 Hrs 0 Mins", valueHrs: 92 },
-    { day: "Fri", date: "Friday, 10 July", valueText: "3 Days 13 Hrs 0 Mins", valueHrs: 85 },
-    { day: "Sat", date: "Saturday, 11 July", valueText: "4 Days 10 Hrs 42 Mins", valueHrs: 106.7 },
-    { day: "Sun", date: "Sunday, 12 July", valueText: "4 Days 6 Hrs 0 Mins", valueHrs: 102 },
-    { day: "Mon", date: "Monday, 13 July", valueText: "3 Days 16 Hrs 0 Mins", valueHrs: 88 },
-    { day: "Tue", date: "Tuesday, 14 July", valueText: "3 Days 19 Hrs 0 Mins", valueHrs: 91 },
-    { day: "Wed", date: "Wednesday, 15 July", valueText: "4 Days 9 Hrs 0 Mins", valueHrs: 105 },
+    { day: "Thu", date: "Thursday, 9 July", valueText: "3 Days 20 Hrs", valueHrs: 92 },
+    { day: "Fri", date: "Friday, 10 July", valueText: "3 Days 13 Hrs", valueHrs: 85 },
+    { day: "Sat", date: "Saturday, 11 July", valueText: "4 Days 10 Hrs", valueHrs: 106.7 },
+    { day: "Sun", date: "Sunday, 12 July", valueText: "4 Days 6 Hrs", valueHrs: 102 },
+    { day: "Mon", date: "Monday, 13 July", valueText: "3 Days 16 Hrs", valueHrs: 88 },
+    { day: "Tue", date: "Tuesday, 14 July", valueText: "3 Days 19 Hrs", valueHrs: 91 },
+    { day: "Wed", date: "Wednesday, 15 July", valueText: "4 Days 9 Hrs", valueHrs: 105 },
   ];
 
   const statsApprovalData = [
@@ -937,7 +937,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                 <p className="text-xl font-extrabold text-[#d97706]">
                   {hoveredPointIndex !== null
                     ? (statsTab === "processingTime" ? statsProcessingData[hoveredPointIndex].valueText : statsApprovalData[hoveredPointIndex].valueText)
-                    : (statsTab === "processingTime" ? "4 Days 1 Hr 50 Mins" : "98.5% Approval Rate")}
+                    : (statsTab === "processingTime" ? "4 Days 1 Hr" : "98.5% Approval Rate")}
                 </p>
               </div>
             </div>
@@ -1027,10 +1027,24 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                     });
 
                     setHoveredPointIndex(nearestIndex);
-                    // Tooltip follows actual mouse screen coordinates, but offset it
+
+                    // Dynamic 2D boundaries for tooltip positioning (along all sides)
+                    const tooltipWidth = 175;
+                    const tooltipHeight = 70;
+                    
+                    let tooltipX = x + 15; // default to right of cursor
+                    if (x + tooltipWidth + 15 > rect.width) {
+                      tooltipX = x - tooltipWidth - 15; // shift to left
+                    }
+
+                    let tooltipY = y - tooltipHeight - 15; // default to top of cursor
+                    if (y - tooltipHeight - 15 < 0) {
+                      tooltipY = y + 15; // shift to bottom
+                    }
+
                     setTooltipState({
-                      x: e.clientX - rect.left,
-                      y: e.clientY - rect.top - 70, // position above cursor
+                      x: tooltipX,
+                      y: tooltipY,
                       show: true
                     });
                   }}
@@ -1118,7 +1132,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                   <div
                     className="absolute bg-white border border-slate-100 rounded-2xl p-3.5 shadow-xl pointer-events-none z-30 flex flex-col gap-1 transition-all duration-75 ease-out select-none min-w-[170px]"
                     style={{
-                      left: `${tooltipState.x - 85}px`, // center the popup box horizontally
+                      left: `${tooltipState.x}px`,
                       top: `${tooltipState.y}px`
                     }}
                   >
