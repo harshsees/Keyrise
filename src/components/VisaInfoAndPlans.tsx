@@ -313,7 +313,7 @@ type VisaInfoAndPlansProps = {
               ].map((emirate) => (
                 <div
                   key={emirate.name}
-                  className="relative group overflow-hidden rounded-[16px] sm:rounded-[20px] shadow-sm cursor-pointer h-[130px] sm:h-[180px] md:h-[200px] bg-slate-100"
+                  className="relative group overflow-hidden rounded-[16px] sm:rounded-[20px] shadow-sm cursor-pointer h-[160px] sm:h-[225px] md:h-[250px] bg-slate-100"
                 >
                   <img
                     src={emirate.image}
