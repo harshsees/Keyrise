@@ -683,15 +683,30 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
           ) : quizStep < 6 ? (
             /* Active Quiz Interface */
             <div className="flex flex-col items-center justify-center py-4">
-              <div
-                className="relative flex items-center justify-center w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full shadow-inner transition-all duration-700 ease-out"
-                style={{
-                  /* Creates the solid pie-chart progress effect */
-                  background: `conic-gradient(#d97706 ${(quizStep / 6) * 360}deg, #f8fafc ${(quizStep / 6) * 360}deg)`
-                }}
-              >
-                {/* Inner masking circle */}
-                <div className="absolute inset-3.5 bg-slate-50/80 rounded-full" />
+              <div className="relative flex items-center justify-center w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] rounded-full shadow-md bg-slate-50/50">
+                {/* SVG Progress Ring for smooth hardware-accelerated circular animation */}
+                <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="46"
+                    fill="none"
+                    stroke="#f1f5f9"
+                    strokeWidth="3.5"
+                  />
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="46"
+                    fill="none"
+                    stroke="#d97706"
+                    strokeWidth="3.5"
+                    strokeDasharray={2 * Math.PI * 46}
+                    strokeDashoffset={2 * Math.PI * 46 * (1 - quizStep / 6)}
+                    strokeLinecap="round"
+                    className="transition-all duration-700 ease-out"
+                  />
+                </svg>
 
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -700,7 +715,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.92, y: -15 }}
                     transition={{ duration: 0.3 }}
-                    className="relative z-10 w-[240px] sm:w-[270px] bg-white rounded-2xl shadow-xl border border-slate-100 p-5 sm:p-6 flex flex-col justify-between h-[260px] sm:h-[285px]"
+                    className="relative z-10 w-[270px] sm:w-[320px] bg-white rounded-2xl shadow-xl border border-slate-100 p-6 flex flex-col justify-between h-[270px] sm:h-[300px]"
                   >
                     <div>
                       <p className="text-4xl sm:text-5xl font-extrabold text-slate-200 leading-none">
@@ -748,7 +763,7 @@ export function VisaInfoAndPlans({ selectedPlan, onSelectPlan }: VisaInfoAndPlan
           ) : (
             /* Results Screen with Liquid Wave Effect */
             <div className="flex flex-col items-center justify-center py-4">
-              <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full overflow-hidden flex flex-col justify-center items-center p-6 text-center shadow-xl border border-amber-100 bg-amber-50/30">
+              <div className="relative w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] rounded-full overflow-hidden flex flex-col justify-center items-center p-6 text-center shadow-xl border border-amber-100 bg-amber-50/30">
                 
                 {/* Wave container filling corresponding to percentage */}
                 <div
