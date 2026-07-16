@@ -10,7 +10,7 @@ import { MultiStepApplicationForm } from "@/components/MultiStepApplicationForm"
 import { PricingTable } from "@/components/PricingTable";
 import { RequirementChecklist } from "@/components/RequirementChecklist";
 import { TopHero } from "@/components/TopHero";
-import { BadgeCheck, CircleHelp, FileCheck2, ShieldCheck, Timer, Wallet } from "lucide-react";
+
 
 export default function Home() {
   const [selectedPlan, setSelectedPlan] = useState<number>(0);
@@ -42,52 +42,7 @@ export default function Home() {
               
               <PricingTable className="w-full py-8 md:py-10 border-t border-slate-200/50" />
 
-              <section className="w-full py-8 md:py-10 border-t border-slate-200/50">
-                <h2 className="text-3xl font-bold text-[var(--foreground)]">Why choose us</h2>
-                <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {[
-                    {
-                      title: "On-time delivery promise",
-                      desc: "Structured processing with clear timelines and escalation support.",
-                      icon: Timer,
-                    },
-                    {
-                      title: "Expert document checks",
-                      desc: "Human review reduces rejection risk from incomplete documentation.",
-                      icon: FileCheck2,
-                    },
-                    {
-                      title: "Secure document handling",
-                      desc: "Encrypted file transfer and strict access controls for personal data.",
-                      icon: ShieldCheck,
-                    },
-                    {
-                      title: "Real-time tracking",
-                      desc: "Every stage is visible from submission to final visa delivery.",
-                      icon: BadgeCheck,
-                    },
-                    {
-                      title: "Transparent pricing",
-                      desc: "Government fee, service fee, and taxes displayed before payment.",
-                      icon: Wallet,
-                    },
-                    {
-                      title: "Dedicated support",
-                      desc: "Get help via [support@email.com] or [phone number].",
-                      icon: CircleHelp,
-                    },
-                  ].map(({ title, desc, icon: Icon }) => (
-                    <article
-                      key={title}
-                      className="rounded-2xl border border-[var(--border)] bg-white p-5 shadow-sm"
-                    >
-                      <Icon className="mb-3 h-5 w-5 text-[var(--primary)]" />
-                      <h3 className="text-lg font-semibold text-[var(--foreground)]">{title}</h3>
-                      <p className="mt-2 text-sm text-[var(--muted)]">{desc}</p>
-                    </article>
-                  ))}
-                </div>
-              </section>
+
 
               <div className="border-t border-slate-200/50 pt-6">
                 <MultiStepApplicationForm className="w-full py-4" />
