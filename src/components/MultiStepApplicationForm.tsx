@@ -109,7 +109,7 @@ const checklistTemplate = [
   },
 ] as const;
 
-export function MultiStepApplicationForm() {
+export function MultiStepApplicationForm({ className }: { className?: string }) {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [applicationId, setApplicationId] = useState("");
@@ -209,7 +209,7 @@ export function MultiStepApplicationForm() {
   };
 
   return (
-    <section id="application-flow" className="mx-auto w-full max-w-7xl px-4 py-14 md:px-6">
+    <section id="application-flow" className={className || "mx-auto w-full max-w-7xl px-4 py-14 md:px-6"}>
       <div className="rounded-3xl border border-[var(--border)] bg-white p-4 shadow-sm md:p-8">
         <div className="mb-7 flex flex-wrap gap-2">
           {[

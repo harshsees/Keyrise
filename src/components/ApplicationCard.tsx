@@ -18,6 +18,7 @@ type ApplicationCardProps = {
   onStart?: () => void;
   selectedPlan: number;
   onSelectPlan: (index: number) => void;
+  className?: string;
 };
 
 // Helper function to get the date dynamically (e.g. 2 days ahead)
@@ -43,6 +44,7 @@ export function ApplicationCard({
   onStart,
   selectedPlan,
   onSelectPlan,
+  className,
 }: ApplicationCardProps) {
   const shouldReduceMotion = useReducedMotion();
 
@@ -112,7 +114,7 @@ export function ApplicationCard({
   };
 
   return (
-    <aside className="w-full max-w-md mx-auto md:max-w-none px-4 py-8 select-none">
+    <aside className={className || "w-full max-w-md mx-auto md:max-w-none px-4 py-8 select-none"}>
       {/* Dynamic CTA shine styles injected locally */}
       <style dangerouslySetInnerHTML={{
         __html: `

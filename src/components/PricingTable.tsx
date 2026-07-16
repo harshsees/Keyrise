@@ -25,9 +25,9 @@ const visaRows = [
   },
 ];
 
-export function PricingTable() {
+export function PricingTable({ className }: { className?: string }) {
   return (
-    <section id="pricing" className="mx-auto w-full max-w-7xl px-4 py-14 md:px-6">
+    <section id="pricing" className={className || "mx-auto w-full max-w-7xl px-4 py-14 md:px-6"}>
       <h2 className="text-3xl font-bold text-[var(--foreground)]">
         Fees and processing time
       </h2>

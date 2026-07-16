@@ -154,7 +154,7 @@ type VisaInfoAndPlansProps = {
           </div>
 
           {/* Indented branching container (restored original spacing) */}
-          <div className="mt-4 space-y-3.5">
+          <div className="mt-6.5 space-y-5.5">
             {plans.map((plan, index) => {
               const active = selectedPlan === index;
               return (
@@ -162,10 +162,10 @@ type VisaInfoAndPlansProps = {
                   {/* Curved branch line shown only to the selected plan (restored branch sizes) */}
                   {selectedPlan === 0 && index === 0 && (
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      initial={{ opacity: 0, width: 23 }}
+                      animate={{ opacity: 1, width: 31 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute left-[5px] w-[23px] top-[-16px] h-[41px] border-l-2 border-b-2 border-slate-200/80 rounded-bl-[16px] pointer-events-none"
+                      className="absolute left-[5px] top-[-26px] h-[51px] border-l-2 border-b-2 border-slate-200/80 rounded-bl-[16px] pointer-events-none"
                     />
                   )}
 
@@ -174,25 +174,25 @@ type VisaInfoAndPlansProps = {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute left-[5px] top-[-16px] bottom-[-14px] w-[2px] bg-slate-200/80 pointer-events-none"
+                      className="absolute left-[5px] top-[-26px] bottom-[-22px] w-[2px] bg-slate-200/80 pointer-events-none"
                     />
                   )}
 
                   {selectedPlan === 1 && index === 1 && (
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      initial={{ opacity: 0, width: 23 }}
+                      animate={{ opacity: 1, width: 31 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute left-[5px] w-[23px] top-0 h-[25px] border-l-2 border-b-2 border-slate-200/80 rounded-bl-[16px] pointer-events-none"
+                      className="absolute left-[5px] top-0 h-[25px] border-l-2 border-b-2 border-slate-200/80 rounded-bl-[16px] pointer-events-none"
                     />
                   )}
 
                   <motion.button
                     type="button"
                     onClick={() => onSelectPlan(index)}
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                    className={`relative w-full rounded-xl border p-3 text-left transition ${
+                    animate={{ x: active ? 8 : 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className={`relative w-full rounded-xl border p-3.5 text-left transition ${
                       active
                         ? "border-[var(--primary)] bg-amber-50 shadow-md shadow-amber-100/50"
                         : "border-[var(--border)] bg-[#fcfcfc]"
@@ -204,7 +204,7 @@ type VisaInfoAndPlansProps = {
                       </span>
                     )}
 
-                    <div className="flex items-start justify-between gap-2.5">
+                    <div className="flex items-start justify-between gap-2.5 w-full">
                       <div>
                         <p className="text-sm font-semibold text-[var(--foreground)]">
                           {plan.title}
@@ -222,7 +222,7 @@ type VisaInfoAndPlansProps = {
                       </div>
                     </div>
 
-                    <div className="mt-3 flex items-center justify-between">
+                    <div className="mt-3 flex items-center justify-between w-full">
                       <span className="inline-flex items-center gap-1.5 text-xs text-[var(--primary)]">
                         <span className="rounded-full border border-[var(--border)] bg-white px-2 py-0.5 text-[11px] font-semibold">
                           View Timeline

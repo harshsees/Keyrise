@@ -38,11 +38,11 @@ const faqs = [
   },
 ];
 
-export function FAQAccordion() {
+export function FAQAccordion({ className }: { className?: string }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="mx-auto w-full max-w-4xl px-4 py-14 md:px-6">
+    <section id="faq" className={className || "mx-auto w-full max-w-4xl px-4 py-14 md:px-6"}>
       <h2 className="text-3xl font-bold text-[var(--foreground)]">FAQs</h2>
       <div className="mt-6 space-y-3">
         {faqs.map((item, index) => {
