@@ -43,43 +43,6 @@ export default function Home() {
               <PricingTable className="w-full py-8 md:py-10 border-t border-slate-200/50" />
 
               <section className="w-full py-8 md:py-10 border-t border-slate-200/50">
-                <h2 className="text-3xl font-bold text-[var(--foreground)]">How to apply online</h2>
-                <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  {[
-                    {
-                      title: "Choose your visa type",
-                      desc: "Select the visa that fits your travel timeline and stay duration.",
-                      icon: CircleHelp,
-                    },
-                    {
-                      title: "Upload documents",
-                      desc: "Submit passport and supporting files with secure document upload.",
-                      icon: FileCheck2,
-                    },
-                    {
-                      title: "Experts verify your application",
-                      desc: "Our specialists review all details before submission to authority.",
-                      icon: BadgeCheck,
-                    },
-                    {
-                      title: "Receive your visa by email",
-                      desc: "Track progress in real time and get your approved visa over email.",
-                      icon: Timer,
-                    },
-                  ].map(({ title, desc, icon: Icon }) => (
-                    <article
-                      key={title}
-                      className="rounded-2xl border border-[var(--border)] bg-white p-5 shadow-sm"
-                    >
-                      <Icon className="mb-3 h-5 w-5 text-[var(--primary)]" />
-                      <h3 className="text-lg font-semibold text-[var(--foreground)]">{title}</h3>
-                      <p className="mt-2 text-sm text-[var(--muted)]">{desc}</p>
-                    </article>
-                  ))}
-                </div>
-              </section>
-
-              <section className="w-full py-8 md:py-10 border-t border-slate-200/50">
                 <h2 className="text-3xl font-bold text-[var(--foreground)]">Why choose us</h2>
                 <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {[
