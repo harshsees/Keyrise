@@ -252,7 +252,6 @@ type VisaInfoAndPlansProps = {
             <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
               All 7 Emirates with 1 Visa
             </h2>
-            <div className="w-16 h-[3px] bg-blue-600 mt-2 rounded-full" />
           </div>
 
           <div className="space-y-3.5 md:space-y-4">
@@ -339,7 +338,6 @@ type VisaInfoAndPlansProps = {
           <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
             Dubai Visa Requirements
           </h2>
-          <div className="w-16 h-[3px] bg-blue-600 mt-2 rounded-full" />
         </div>
         <div className="flex flex-wrap gap-3">
           <div className="inline-flex items-center gap-2 px-4.5 py-2.5 bg-slate-50 border border-slate-200/60 rounded-2xl font-bold text-sm text-[var(--foreground)] shadow-sm cursor-pointer hover:bg-slate-100/50 transition">
@@ -355,7 +353,6 @@ type VisaInfoAndPlansProps = {
           <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
             Partners We Work With
           </h2>
-          <div className="w-16 h-[3px] bg-blue-600 mt-2 rounded-full" />
         </div>
         <div className="grid grid-cols-3 gap-4 max-w-lg">
           {/* Card 1: Ministry of Foreign Affairs */}
@@ -410,46 +407,45 @@ type VisaInfoAndPlansProps = {
           <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
             How Process Works
           </h2>
-          <div className="w-16 h-[3px] bg-blue-600 mt-2 rounded-full" />
         </div>
 
         <div className="relative pl-6 md:pl-8 border-l border-slate-200/80 ml-3.5 space-y-6 pt-2 pb-2">
           {/* Step 1 */}
           <div className="relative">
-            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 border border-white">
+            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-amber-600 border border-white">
               <span className="h-1.5 w-1.5 rounded-full bg-white"></span>
             </span>
             <div className="rounded-2xl border border-slate-200/80 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition duration-300">
-              <p className="text-xs font-bold text-blue-600">Step 1</p>
-              <h3 className="text-lg font-bold text-[var(--foreground)] mt-1">Apply on Atlys</h3>
+              <p className="text-xs font-bold text-amber-600">Step 1</p>
+              <h3 className="text-lg font-bold text-[var(--foreground)] mt-1">Apply on Keyrise</h3>
               <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-                Submit your documents on Atlys — only pay government fee.
+                Submit your documents on Keyrise — only pay government fee.
               </p>
             </div>
           </div>
 
           {/* Step 2 */}
           <div className="relative">
-            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 border border-white">
+            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-amber-600 border border-white">
               <span className="h-1.5 w-1.5 rounded-full bg-white"></span>
             </span>
             <div className="rounded-2xl border border-slate-200/80 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition duration-300">
-              <p className="text-xs font-bold text-blue-600">Step 2</p>
+              <p className="text-xs font-bold text-amber-600">Step 2</p>
               <h3 className="text-lg font-bold text-[var(--foreground)] mt-1">Your Documents Are Verified</h3>
               <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-                Atlys verifies your documents and submits to Immigration
+                Keyrise verifies your documents and submits to Immigration
               </p>
             </div>
           </div>
 
           {/* Step 3 */}
           <div className="relative">
-            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 border border-white">
+            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-amber-600 border border-white">
               <span className="h-1.5 w-1.5 rounded-full bg-white"></span>
             </span>
             <div className="rounded-2xl border border-slate-200/80 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition duration-300 space-y-4">
               <div>
-                <p className="text-xs font-bold text-blue-600">Step 3</p>
+                <p className="text-xs font-bold text-amber-600">Step 3</p>
                 <h3 className="text-lg font-bold text-[var(--foreground)] mt-1">Your Visa Gets Processed</h3>
                 <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
                   We work with Immigration to ensure you get your Visa on time.
@@ -458,10 +454,10 @@ type VisaInfoAndPlansProps = {
               
               {/* Nested tracking sub-timeline */}
               <div className="bg-slate-50 border border-slate-100 rounded-xl p-4.5 space-y-4">
-                <div className="relative pl-5 border-l border-blue-500/30 space-y-4 ml-1">
+                <div className="relative pl-5 border-l border-amber-500/30 space-y-4 ml-1">
                   {/* Item 1 */}
                   <div className="relative">
-                    <span className="absolute -left-[24.5px] top-1 h-2 w-2 rounded-full bg-blue-600 border border-white" />
+                    <span className="absolute -left-[24.5px] top-1 h-2 w-2 rounded-full bg-amber-600 border border-white" />
                     <p className="text-xs font-bold text-slate-800 leading-tight">
                       Application has been sent to the immigration supervisor
                     </p>
@@ -474,7 +470,7 @@ type VisaInfoAndPlansProps = {
                   </div>
                   {/* Item 2 */}
                   <div className="relative">
-                    <span className="absolute -left-[24.5px] top-1 h-2 w-2 rounded-full bg-blue-600 border border-white" />
+                    <span className="absolute -left-[24.5px] top-1 h-2 w-2 rounded-full bg-amber-600 border border-white" />
                     <p className="text-xs font-bold text-slate-800 leading-tight">
                       Application has been sent to internal intelligence
                     </p>
@@ -492,14 +488,14 @@ type VisaInfoAndPlansProps = {
 
           {/* Step 4 */}
           <div className="relative">
-            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 border border-white">
+            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-amber-600 border border-white">
               <span className="h-1.5 w-1.5 rounded-full bg-white"></span>
             </span>
             <div className="rounded-2xl border border-slate-200/80 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition duration-300 space-y-4">
               <div>
-                <p className="text-xs font-bold text-blue-600">Step 4</p>
+                <p className="text-xs font-bold text-amber-600">Step 4</p>
                 <h3 className="text-lg font-bold text-[var(--foreground)] mt-1">
-                  Get Your Visa on <span className="text-blue-600">20 Jul, 01:08 PM</span>
+                  Get Your Visa on <span className="text-amber-600">20 Jul, 01:08 PM</span>
                 </h3>
               </div>
 
@@ -509,7 +505,7 @@ type VisaInfoAndPlansProps = {
                 <div className="flex items-center justify-between py-2 first:pt-0">
                   <span className="text-xs font-bold text-slate-700 leading-snug">Your visa is approved on time</span>
                   <span className="rounded-lg bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 shadow-sm border border-emerald-100/50">
-                    Pay Atlys Fee
+                    Pay Keyrise Fee
                   </span>
                 </div>
                 {/* Row 2 */}
@@ -518,7 +514,7 @@ type VisaInfoAndPlansProps = {
                     Your visa is approved even one second after the promised time
                   </span>
                   <span className="rounded-lg bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-700 shadow-sm border border-amber-100/50 shrink-0">
-                    Atlys Fee Waived
+                    Keyrise Fee Waived
                   </span>
                 </div>
                 {/* Row 3 */}
