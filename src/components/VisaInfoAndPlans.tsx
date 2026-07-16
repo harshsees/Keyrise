@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, ChevronDown, CalendarDays, FileText, FolderOpen, Smartphone, Clock3 } from "lucide-react";
+import { CheckCircle2, ChevronDown, CalendarDays, FileText, FolderOpen, Smartphone, Clock3, Scan } from "lucide-react";
 import { motion } from "framer-motion";
 
 
@@ -328,6 +328,207 @@ type VisaInfoAndPlansProps = {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Dubai Visa Requirements Section */}
+      <div className="pt-8 border-t border-slate-200/50 space-y-5">
+        <div>
+          <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
+            Dubai Visa Requirements
+          </h2>
+          <div className="w-16 h-[3px] bg-blue-600 mt-2 rounded-full" />
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <div className="inline-flex items-center gap-2 px-4.5 py-2.5 bg-slate-50 border border-slate-200/60 rounded-2xl font-bold text-sm text-[var(--foreground)] shadow-sm cursor-pointer hover:bg-slate-100/50 transition">
+            <Scan className="h-4.5 w-4.5 text-slate-700" />
+            Passport
+          </div>
+        </div>
+      </div>
+
+      {/* Partners We Work With Section */}
+      <div className="pt-8 border-t border-slate-200/50 space-y-5">
+        <div>
+          <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
+            Partners We Work With
+          </h2>
+          <div className="w-16 h-[3px] bg-blue-600 mt-2 rounded-full" />
+        </div>
+        <div className="grid grid-cols-3 gap-4 max-w-lg">
+          {/* Card 1: Ministry of Foreign Affairs */}
+          <div className="flex flex-col items-center justify-center bg-white border border-slate-200/40 rounded-3xl p-4 aspect-square shadow-sm hover:shadow-md transition duration-300 gap-2">
+            <svg className="h-10 w-10 text-amber-600" viewBox="0 0 100 100" fill="currentColor">
+              <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="2 2" />
+              <path d="M50 20 C45 35 25 40 15 50 C25 50 35 45 50 35 C65 45 75 50 85 50 C75 40 55 35 50 20 Z" />
+              <circle cx="50" cy="45" r="14" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="M43 45 L43 53 L57 53 L57 45 Z" fill="white" />
+              <path d="M43 45 L43 53 L47 53 L47 45 Z" fill="#c2410c" />
+              <path d="M47 45 L47 47.6 L57 47.6 L57 45 Z" fill="#15803d" />
+              <path d="M47 50.4 L47 53 L57 53 L57 50.4 Z" fill="black" />
+            </svg>
+            <p className="text-[8px] md:text-[9px] font-bold text-center tracking-tight text-amber-800 uppercase leading-tight mt-1 max-w-[85px]">
+              Ministry of Foreign Affairs
+            </p>
+          </div>
+
+          {/* Card 2: Government of Dubai */}
+          <div className="flex flex-col items-center justify-center bg-white border border-slate-200/40 rounded-3xl p-4 aspect-square shadow-sm hover:shadow-md transition duration-300 gap-2">
+            <svg className="h-10 w-24 text-red-600" viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 20 C20 10 35 15 45 25 C55 15 70 10 80 20 C90 15 105 15 115 25" />
+              <path d="M30 15 C35 5 45 5 50 15" />
+              <path d="M75 15 C80 5 90 5 95 15" />
+            </svg>
+            <p className="text-[8px] md:text-[9px] font-extrabold text-center tracking-wider text-red-600 uppercase leading-none mt-1">
+              Government of Dubai
+            </p>
+          </div>
+
+          {/* Card 3: IATA */}
+          <div className="flex flex-col items-center justify-center bg-white border border-slate-200/40 rounded-3xl p-4 aspect-square shadow-sm hover:shadow-md transition duration-300 gap-2">
+            <svg className="h-10 w-20 text-sky-800" viewBox="0 0 100 40" fill="currentColor">
+              <path d="M10 15 H40 L35 25 H5 Z" />
+              <path d="M90 15 H60 L65 25 H95 Z" />
+              <circle cx="50" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="M36 20 H64" stroke="currentColor" stroke-width="2" />
+              <path d="M50 6 V34" stroke="currentColor" stroke-width="2" />
+              <path d="M39 12 C44 15 56 15 61 12" fill="none" stroke="currentColor" stroke-width="1.5" />
+              <path d="M39 28 C44 25 56 25 61 28" fill="none" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            <p className="text-[10px] md:text-[11px] font-black text-center tracking-widest text-sky-900 uppercase leading-none mt-1">
+              IATA
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* How Process Works Section */}
+      <div className="pt-8 border-t border-slate-200/50 space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold text-[var(--foreground)] tracking-tight">
+            How Process Works
+          </h2>
+          <div className="w-16 h-[3px] bg-blue-600 mt-2 rounded-full" />
+        </div>
+
+        <div className="relative pl-6 md:pl-8 border-l border-slate-200/80 ml-3.5 space-y-6 pt-2 pb-2">
+          {/* Step 1 */}
+          <div className="relative">
+            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 border border-white">
+              <span className="h-1.5 w-1.5 rounded-full bg-white"></span>
+            </span>
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition duration-300">
+              <p className="text-xs font-bold text-blue-600">Step 1</p>
+              <h3 className="text-lg font-bold text-[var(--foreground)] mt-1">Apply on Atlys</h3>
+              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
+                Submit your documents on Atlys — only pay government fee.
+              </p>
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div className="relative">
+            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 border border-white">
+              <span className="h-1.5 w-1.5 rounded-full bg-white"></span>
+            </span>
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition duration-300">
+              <p className="text-xs font-bold text-blue-600">Step 2</p>
+              <h3 className="text-lg font-bold text-[var(--foreground)] mt-1">Your Documents Are Verified</h3>
+              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
+                Atlys verifies your documents and submits to Immigration
+              </p>
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          <div className="relative">
+            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 border border-white">
+              <span className="h-1.5 w-1.5 rounded-full bg-white"></span>
+            </span>
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition duration-300 space-y-4">
+              <div>
+                <p className="text-xs font-bold text-blue-600">Step 3</p>
+                <h3 className="text-lg font-bold text-[var(--foreground)] mt-1">Your Visa Gets Processed</h3>
+                <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
+                  We work with Immigration to ensure you get your Visa on time.
+                </p>
+              </div>
+              
+              {/* Nested tracking sub-timeline */}
+              <div className="bg-slate-50 border border-slate-100 rounded-xl p-4.5 space-y-4">
+                <div className="relative pl-5 border-l border-blue-500/30 space-y-4 ml-1">
+                  {/* Item 1 */}
+                  <div className="relative">
+                    <span className="absolute -left-[24.5px] top-1 h-2 w-2 rounded-full bg-blue-600 border border-white" />
+                    <p className="text-xs font-bold text-slate-800 leading-tight">
+                      Application has been sent to the immigration supervisor
+                    </p>
+                    <div className="mt-1 flex items-center gap-2">
+                      <span className="text-[10px] font-semibold text-slate-500">8 Jan, 5:45 AM</span>
+                      <span className="inline-flex items-center rounded bg-emerald-50 px-1.5 py-0.5 text-[9px] font-extrabold text-emerald-700 uppercase tracking-wider">
+                        ON TIME
+                      </span>
+                    </div>
+                  </div>
+                  {/* Item 2 */}
+                  <div className="relative">
+                    <span className="absolute -left-[24.5px] top-1 h-2 w-2 rounded-full bg-blue-600 border border-white" />
+                    <p className="text-xs font-bold text-slate-800 leading-tight">
+                      Application has been sent to internal intelligence
+                    </p>
+                    <div className="mt-1 flex items-center gap-2">
+                      <span className="text-[10px] font-semibold text-slate-500">8 Jan, 5:45 AM</span>
+                      <span className="inline-flex items-center rounded bg-emerald-50 px-1.5 py-0.5 text-[9px] font-extrabold text-emerald-700 uppercase tracking-wider">
+                        ON TIME
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 4 */}
+          <div className="relative">
+            <span className="absolute -left-[30px] md:-left-[38px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 border border-white">
+              <span className="h-1.5 w-1.5 rounded-full bg-white"></span>
+            </span>
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition duration-300 space-y-4">
+              <div>
+                <p className="text-xs font-bold text-blue-600">Step 4</p>
+                <h3 className="text-lg font-bold text-[var(--foreground)] mt-1">
+                  Get Your Visa on <span className="text-blue-600">20 Jul, 01:08 PM</span>
+                </h3>
+              </div>
+
+              {/* Nested fee grid */}
+              <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 divide-y divide-slate-200/60">
+                {/* Row 1 */}
+                <div className="flex items-center justify-between py-2 first:pt-0">
+                  <span className="text-xs font-bold text-slate-700 leading-snug">Your visa is approved on time</span>
+                  <span className="rounded-lg bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 shadow-sm border border-emerald-100/50">
+                    Pay Atlys Fee
+                  </span>
+                </div>
+                {/* Row 2 */}
+                <div className="flex items-center justify-between py-2">
+                  <span className="text-xs font-bold text-slate-700 leading-snug max-w-[200px] md:max-w-none">
+                    Your visa is approved even one second after the promised time
+                  </span>
+                  <span className="rounded-lg bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-700 shadow-sm border border-amber-100/50 shrink-0">
+                    Atlys Fee Waived
+                  </span>
+                </div>
+                {/* Row 3 */}
+                <div className="flex items-center justify-between py-2 last:pb-0">
+                  <span className="text-xs font-bold text-slate-700 leading-snug">Your visa is rejected</span>
+                  <span className="rounded-lg bg-red-50 px-3 py-1.5 text-xs font-bold text-red-700 shadow-sm border border-red-100/50">
+                    Government Fee Refunded
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
