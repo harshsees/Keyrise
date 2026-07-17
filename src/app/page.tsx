@@ -7,7 +7,6 @@ import { Header } from "@/components/Header";
 import { VisaInfoAndPlans } from "@/components/VisaInfoAndPlans";
 import { ApplicationCard } from "@/components/ApplicationCard";
 import { MultiStepApplicationForm } from "@/components/MultiStepApplicationForm";
-import { PricingTable } from "@/components/PricingTable";
 import { RequirementChecklist } from "@/components/RequirementChecklist";
 import { TopHero } from "@/components/TopHero";
 
@@ -40,8 +39,6 @@ export default function Home() {
 
               <RequirementChecklist className="w-full py-8 md:py-10 border-t border-slate-200/50 mt-10" />
               
-              <PricingTable className="w-full py-8 md:py-10 border-t border-slate-200/50" />
-
 
 
               <div className="border-t border-slate-200/50 pt-6">
