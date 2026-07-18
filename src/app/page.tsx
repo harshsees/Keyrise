@@ -40,9 +40,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-1 flex-col bg-[var(--background)]">
-      <Header />
+      <Header onStart={handleStartApplication} />
       <main className="flex-1">
-        <TopHero />
+        <TopHero onStart={handleStartApplication} />
 
         {/* Responsive Grid Layout containing the entire page below TopHero */}
         <div className="mx-auto w-full max-w-7xl px-4 py-8 md:px-6 md:py-10">

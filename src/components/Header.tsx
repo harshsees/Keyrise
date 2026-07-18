@@ -6,7 +6,11 @@ import { useMemo, useState } from "react";
 const navItems = ["Visas", "Destinations", "Pricing", "Help"];
 const destinations = ["Dubai", "Abu Dhabi", "Sharjah", "Ras Al Khaimah"];
 
-export function Header() {
+type HeaderProps = {
+  onStart?: () => void;
+};
+
+export function Header({ onStart }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -62,12 +66,22 @@ export function Header() {
             <a href="#application-flow" className="px-2 text-sm text-[var(--muted)]">
               Login / My Applications
             </a>
-            <a
-              href="#application-flow"
-              className="rounded-xl bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--primary-hover)]"
-            >
-              Start Application
-            </a>
+            {onStart ? (
+              <button
+                type="button"
+                onClick={onStart}
+                className="rounded-xl bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--primary-hover)] cursor-pointer"
+              >
+                Start Application
+              </button>
+            ) : (
+              <a
+                href="#application-flow"
+                className="rounded-xl bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--primary-hover)]"
+              >
+                Start Application
+              </a>
+            )}
           </div>
 
           <button
@@ -101,12 +115,25 @@ export function Header() {
                 </a>
               ))}
               <a href="#application-flow">Login / My Applications</a>
-              <a
-                href="#application-flow"
-                className="rounded-xl bg-[var(--primary)] px-4 py-3 text-center font-semibold text-white"
-              >
-                Start Application
-              </a>
+              {onStart ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    onStart();
+                  }}
+                  className="rounded-xl bg-[var(--primary)] px-4 py-3 text-center font-semibold text-white cursor-pointer"
+                >
+                  Start Application
+                </button>
+              ) : (
+                <a
+                  href="#application-flow"
+                  className="rounded-xl bg-[var(--primary)] px-4 py-3 text-center font-semibold text-white"
+                >
+                  Start Application
+                </a>
+              )}
             </div>
           </div>
         )}
