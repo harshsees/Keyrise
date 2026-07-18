@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -9,10 +10,34 @@ import { ApplicationCard } from "@/components/ApplicationCard";
 import { MultiStepApplicationForm } from "@/components/MultiStepApplicationForm";
 import { RequirementChecklist } from "@/components/RequirementChecklist";
 import { TopHero } from "@/components/TopHero";
+import { TravelPlanModal } from "@/components/TravelPlanModal";
+import { DatePickerModal } from "@/components/DatePickerModal";
 
 
 export default function Home() {
+  const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState<number>(0);
+  const [isTravelPlanOpen, setIsTravelPlanOpen] = useState<boolean>(false);
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState<boolean>(false);
+
+  const handleStartApplication = () => {
+    setIsTravelPlanOpen(true);
+  };
+
+  const handleSelectTravelOption = (option: "before" | "after") => {
+    setIsTravelPlanOpen(false);
+    if (option === "before") {
+      router.push("/apply?option=before");
+    } else {
+      setIsDatePickerOpen(true);
+    }
+  };
+
+  const handleSelectDate = (date: Date) => {
+    setIsDatePickerOpen(false);
+    const dateStr = date.toISOString().split("T")[0];
+    router.push(`/apply?option=after&date=${dateStr}`);
+  };
 
   return (
     <div className="flex flex-1 flex-col bg-[var(--background)]">
@@ -33,6 +58,7 @@ export default function Home() {
                 <ApplicationCard
                   selectedPlan={selectedPlan}
                   onSelectPlan={setSelectedPlan}
+                  onStart={handleStartApplication}
                   className="w-full max-w-md mx-auto py-4 select-none"
                 />
               </div>
@@ -55,6 +81,7 @@ export default function Home() {
               <ApplicationCard
                 selectedPlan={selectedPlan}
                 onSelectPlan={setSelectedPlan}
+                onStart={handleStartApplication}
                 className="w-full select-none"
               />
             </div>
@@ -64,14 +91,27 @@ export default function Home() {
 
       </main>
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[var(--border)] bg-white p-3 md:hidden">
-        <a
-          href="#application-flow"
-          className="block rounded-xl bg-[var(--primary)] px-4 py-3 text-center text-sm font-semibold text-white"
+        <button
+          type="button"
+          onClick={handleStartApplication}
+          className="block w-full rounded-xl bg-[var(--primary)] px-4 py-3 text-center text-sm font-semibold text-white cursor-pointer"
         >
           Start Application
-        </a>
+        </button>
       </div>
       <Footer />
+
+      {/* Modals */}
+      <TravelPlanModal
+        isOpen={isTravelPlanOpen}
+        onClose={() => setIsTravelPlanOpen(false)}
+        onSelectOption={handleSelectTravelOption}
+      />
+      <DatePickerModal
+        isOpen={isDatePickerOpen}
+        onClose={() => setIsDatePickerOpen(false)}
+        onSelectDate={handleSelectDate}
+      />
     </div>
   );
 }
