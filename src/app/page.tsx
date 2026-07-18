@@ -7,7 +7,6 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { VisaInfoAndPlans } from "@/components/VisaInfoAndPlans";
 import { ApplicationCard } from "@/components/ApplicationCard";
-import { MultiStepApplicationForm } from "@/components/MultiStepApplicationForm";
 import { RequirementChecklist } from "@/components/RequirementChecklist";
 import { TopHero } from "@/components/TopHero";
 import { TravelPlanModal } from "@/components/TravelPlanModal";
@@ -67,9 +66,7 @@ export default function Home() {
               
 
 
-              <div className="border-t border-slate-200/50 pt-6">
-                <MultiStepApplicationForm className="w-full py-4" />
-              </div>
+
 
               <div className="border-t border-slate-200/50 pt-6">
                 <FAQAccordion className="w-full py-4" />

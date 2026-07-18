@@ -21,7 +21,7 @@ export function TravelPlanModal({ isOpen, onClose, onSelectOption }: TravelPlanM
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+            className="absolute inset-0 bg-slate-900/35"
           />
 
           {/* Modal Container */}
@@ -51,7 +51,7 @@ export function TravelPlanModal({ isOpen, onClose, onSelectOption }: TravelPlanM
               <button
                 type="button"
                 onClick={() => onSelectOption("before")}
-                className="w-full rounded-2xl border-2 border-indigo-600/90 py-3.5 px-6 text-sm font-semibold text-indigo-600 hover:bg-indigo-50/50 active:scale-[0.99] transition duration-200 cursor-pointer mb-3"
+                className="w-full rounded-2xl border-2 border-amber-500/90 py-3.5 px-6 text-sm font-semibold text-amber-700 hover:bg-amber-50/50 active:scale-[0.99] transition duration-200 cursor-pointer mb-3"
               >
                 Before Aug 19, 2026
               </button>
@@ -60,7 +60,7 @@ export function TravelPlanModal({ isOpen, onClose, onSelectOption }: TravelPlanM
               <button
                 type="button"
                 onClick={() => onSelectOption("after")}
-                className="w-full rounded-2xl border-2 border-indigo-600/90 py-3.5 px-6 text-sm font-semibold text-indigo-600 hover:bg-indigo-50/50 active:scale-[0.99] transition duration-200 cursor-pointer"
+                className="w-full rounded-2xl border-2 border-amber-500/90 py-3.5 px-6 text-sm font-semibold text-amber-700 hover:bg-amber-50/50 active:scale-[0.99] transition duration-200 cursor-pointer"
               >
                 After Aug 19, 2026
               </button>

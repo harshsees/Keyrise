@@ -129,7 +129,7 @@ function ApplyPageContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-slate-50 via-slate-50/90 to-indigo-50/10 flex flex-col font-sans">
+    <div className="min-h-screen bg-gradient-to-tr from-slate-50 via-slate-50/90 to-amber-50/10 flex flex-col font-sans">
       
       {/* Top Header */}
       <header className="sticky top-0 z-40 bg-white/70 backdrop-blur-md border-b border-slate-100 px-4 md:px-8 py-3.5 flex items-center justify-between">
@@ -152,7 +152,7 @@ function ApplyPageContent() {
               initial={{ width: 0 }}
               animate={{ width: `${getProgressPercentage()}%` }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="h-full bg-indigo-600 rounded-full"
+              className="h-full bg-amber-500 rounded-full"
             />
           </div>
         </div>
@@ -180,12 +180,12 @@ function ApplyPageContent() {
             disabled={currentStep === "travelers"}
             className={`flex-1 md:flex-initial flex items-center gap-3 px-4 py-3 rounded-xl text-left transition duration-300 ${
               currentStep === "travelers"
-                ? "bg-white text-indigo-600 shadow-[0_4px_12px_rgba(79,70,229,0.08)] border border-indigo-100 font-bold"
+                ? "bg-white text-amber-600 shadow-[0_4px_12px_rgba(217,119,6,0.08)] border border-amber-100 font-bold"
                 : "text-slate-400 font-semibold border border-transparent"
             }`}
           >
             <div className={`p-1.5 rounded-lg ${
-              currentStep === "travelers" ? "bg-indigo-50 text-indigo-600" : "bg-transparent text-slate-400"
+              currentStep === "travelers" ? "bg-amber-50 text-amber-600" : "bg-transparent text-slate-400"
             }`}>
               <User className="h-4 w-4" />
             </div>
@@ -200,12 +200,12 @@ function ApplyPageContent() {
             disabled={travelers.length === 0}
             className={`flex-1 md:flex-initial flex items-center gap-3 px-4 py-3 rounded-xl text-left transition duration-300 ${
               currentStep === "docs"
-                ? "bg-white text-indigo-600 shadow-[0_4px_12px_rgba(79,70,229,0.08)] border border-indigo-100 font-bold"
+                ? "bg-white text-amber-600 shadow-[0_4px_12px_rgba(217,119,6,0.08)] border border-amber-100 font-bold"
                 : "text-slate-400 font-semibold border border-transparent disabled:opacity-50"
             }`}
           >
             <div className={`p-1.5 rounded-lg ${
-              currentStep === "docs" ? "bg-indigo-50 text-indigo-600" : "bg-transparent text-slate-400"
+              currentStep === "docs" ? "bg-amber-50 text-amber-600" : "bg-transparent text-slate-400"
             }`}>
               <FileText className="h-4 w-4" />
             </div>
@@ -222,12 +222,12 @@ function ApplyPageContent() {
             disabled={travelers.length === 0 || Object.keys(uploadedDocs).length === 0}
             className={`flex-1 md:flex-initial flex items-center gap-3 px-4 py-3 rounded-xl text-left transition duration-300 ${
               currentStep === "checkout"
-                ? "bg-white text-indigo-600 shadow-[0_4px_12px_rgba(79,70,229,0.08)] border border-indigo-100 font-bold"
+                ? "bg-white text-amber-600 shadow-[0_4px_12px_rgba(217,119,6,0.08)] border border-amber-100 font-bold"
                 : "text-slate-400 font-semibold border border-transparent disabled:opacity-50"
             }`}
           >
             <div className={`p-1.5 rounded-lg ${
-              currentStep === "checkout" ? "bg-indigo-50 text-indigo-600" : "bg-transparent text-slate-400"
+              currentStep === "checkout" ? "bg-amber-50 text-amber-600" : "bg-transparent text-slate-400"
             }`}>
               <ShoppingCart className="h-4 w-4" />
             </div>
@@ -265,7 +265,7 @@ function ApplyPageContent() {
                         className="flex items-center justify-between px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl"
                       >
                         <div className="flex items-center gap-2.5">
-                          <div className="h-6 w-6 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs font-bold">
+                          <div className="h-6 w-6 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-xs font-bold">
                             {idx + 1}
                           </div>
                           <span className="text-sm font-semibold text-slate-800">
@@ -294,7 +294,7 @@ function ApplyPageContent() {
                         value={currentFirstName}
                         onChange={(e) => setCurrentFirstName(e.target.value)}
                         placeholder="Enter traveler's first name"
-                        className="w-full text-center text-xl md:text-2xl font-semibold text-slate-800 placeholder-slate-300 bg-transparent border-b-2 border-dashed border-slate-200 focus:border-indigo-600 focus:border-solid pb-2 transition-all duration-300"
+                        className="w-full text-center text-xl md:text-2xl font-semibold text-slate-800 placeholder-slate-300 bg-transparent border-b-2 border-dashed border-slate-200 focus:border-amber-500 focus:border-solid pb-2 transition-all duration-300"
                         autoFocus
                       />
                     ) : (
@@ -303,7 +303,7 @@ function ApplyPageContent() {
                         value={currentLastName}
                         onChange={(e) => setCurrentLastName(e.target.value)}
                         placeholder="Enter traveler's last name"
-                        className="w-full text-center text-xl md:text-2xl font-semibold text-slate-800 placeholder-slate-300 bg-transparent border-b-2 border-dashed border-slate-200 focus:border-indigo-600 focus:border-solid pb-2 transition-all duration-300"
+                        className="w-full text-center text-xl md:text-2xl font-semibold text-slate-800 placeholder-slate-300 bg-transparent border-b-2 border-dashed border-slate-200 focus:border-amber-500 focus:border-solid pb-2 transition-all duration-300"
                         autoFocus
                       />
                     )}
@@ -335,7 +335,7 @@ function ApplyPageContent() {
                     animate={{ opacity: 1, y: 0 }}
                     type="button"
                     onClick={handleProceedToDocs}
-                    className="mt-6 text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50/60 px-4 py-2 rounded-full border border-indigo-100 hover:bg-indigo-50 active:scale-95 transition"
+                    className="mt-6 text-xs font-bold text-amber-600 hover:text-amber-700 bg-amber-50/60 px-4 py-2 rounded-full border border-amber-100 hover:bg-amber-50 active:scale-95 transition"
                   >
                     Proceed with {travelers.length} {travelers.length === 1 ? "Traveler" : "Travelers"}
                   </motion.button>
@@ -387,12 +387,12 @@ function ApplyPageContent() {
                               <span>Uploaded</span>
                             </div>
                           ) : isUploading ? (
-                            <div className="flex items-center gap-2 px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-xl text-xs font-bold">
-                              <span className="h-3.5 w-3.5 rounded-full border-2 border-indigo-600 border-t-transparent animate-spin" />
+                            <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-50 text-amber-700 rounded-xl text-xs font-bold">
+                              <span className="h-3.5 w-3.5 rounded-full border-2 border-amber-500 border-t-transparent animate-spin" />
                               <span>Uploading...</span>
                             </div>
                           ) : (
-                            <label className="cursor-pointer flex items-center gap-1.5 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-bold rounded-xl transition shadow-sm hover:shadow">
+                            <label className="cursor-pointer flex items-center gap-1.5 px-3 py-2 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white text-xs font-bold rounded-xl transition shadow-sm hover:shadow">
                               <Upload className="h-3.5 w-3.5" />
                               <span>Choose File</span>
                               <input
@@ -487,7 +487,7 @@ function ApplyPageContent() {
                       type="button"
                       onClick={handlePayment}
                       disabled={isProcessingPayment}
-                      className="w-full mt-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-indigo-200 hover:shadow-indigo-300 active:scale-[0.99] transition duration-200"
+                      className="w-full mt-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 px-6 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-amber-200 hover:shadow-amber-300 active:scale-[0.99] transition duration-200"
                     >
                       {isProcessingPayment ? (
                         <>
@@ -522,7 +522,7 @@ function ApplyPageContent() {
                     <div className="mt-8 flex flex-col sm:flex-row gap-3 w-full justify-center">
                       <button
                         onClick={() => router.push(`/track/UAE-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`)}
-                        className="rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 text-sm font-bold shadow shadow-indigo-100 hover:shadow-md cursor-pointer transition active:scale-95"
+                        className="rounded-xl bg-amber-500 hover:bg-amber-600 text-white px-5 py-3 text-sm font-bold shadow shadow-amber-100 hover:shadow-md cursor-pointer transition active:scale-95"
                       >
                         Track Visa Status
                       </button>
@@ -549,7 +549,7 @@ export default function ApplyPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 rounded-full border-4 border-indigo-600 border-t-transparent animate-spin" />
+          <div className="h-8 w-8 rounded-full border-4 border-amber-500 border-t-transparent animate-spin" />
           <span className="text-sm font-semibold text-slate-500">Loading Application...</span>
         </div>
       </div>

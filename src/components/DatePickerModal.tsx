@@ -79,7 +79,7 @@ export function DatePickerModal({ isOpen, onClose, onSelectDate }: DatePickerMod
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+            className="absolute inset-0 bg-slate-900/35"
           />
 
           {/* Modal content */}
@@ -110,7 +110,7 @@ export function DatePickerModal({ isOpen, onClose, onSelectDate }: DatePickerMod
                 onClick={() => setActiveTab("fixed")}
                 className={`rounded-full px-5 py-1.5 text-xs font-semibold transition ${
                   activeTab === "fixed"
-                    ? "bg-white text-indigo-600 shadow-sm"
+                    ? "bg-white text-amber-600 shadow-sm"
                     : "text-slate-500 hover:text-slate-800"
                 }`}
               >
@@ -121,7 +121,7 @@ export function DatePickerModal({ isOpen, onClose, onSelectDate }: DatePickerMod
                 onClick={() => setActiveTab("flexible")}
                 className={`rounded-full px-5 py-1.5 text-xs font-semibold transition ${
                   activeTab === "flexible"
-                    ? "bg-white text-indigo-600 shadow-sm"
+                    ? "bg-white text-amber-600 shadow-sm"
                     : "text-slate-500 hover:text-slate-800"
                 }`}
               >
@@ -165,7 +165,7 @@ export function DatePickerModal({ isOpen, onClose, onSelectDate }: DatePickerMod
                               disabled
                                 ? "text-slate-300 line-through cursor-not-allowed"
                                 : isSelected
-                                ? "bg-indigo-600 text-white font-bold shadow-md"
+                                ? "bg-amber-500 text-white font-bold shadow-md"
                                 : "text-slate-800 hover:bg-slate-50 active:scale-95"
                             }`}
                           >
@@ -199,7 +199,7 @@ export function DatePickerModal({ isOpen, onClose, onSelectDate }: DatePickerMod
                               disabled
                                 ? "text-slate-300 line-through cursor-not-allowed"
                                 : isSelected
-                                ? "bg-indigo-600 text-white font-bold shadow-md"
+                                ? "bg-amber-500 text-white font-bold shadow-md"
                                 : "text-slate-800 hover:bg-slate-50 active:scale-95"
                             }`}
                           >
