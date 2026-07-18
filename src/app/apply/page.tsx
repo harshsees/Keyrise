@@ -180,12 +180,12 @@ function ApplyPageContent() {
             disabled={currentStep === "travelers"}
             className={`flex-1 md:flex-initial flex items-center gap-3 px-4 py-3 rounded-xl text-left transition duration-300 ${
               currentStep === "travelers"
-                ? "bg-amber-50/70 text-amber-700 font-bold"
-                : "text-slate-400 font-semibold border border-transparent hover:text-slate-600 hover:bg-slate-50/50"
+                ? "text-indigo-600 font-bold"
+                : "text-slate-400 font-semibold"
             }`}
           >
             <div className={`p-1.5 rounded-lg ${
-              currentStep === "travelers" ? "bg-amber-50 text-amber-600" : "bg-transparent text-slate-400"
+              currentStep === "travelers" ? "text-indigo-600" : "text-slate-400"
             }`}>
               <User className="h-4 w-4" />
             </div>
@@ -200,12 +200,12 @@ function ApplyPageContent() {
             disabled={travelers.length === 0}
             className={`flex-1 md:flex-initial flex items-center gap-3 px-4 py-3 rounded-xl text-left transition duration-300 ${
               currentStep === "docs"
-                ? "bg-amber-50/70 text-amber-700 font-bold"
-                : "text-slate-400 font-semibold border border-transparent disabled:opacity-50 hover:text-slate-600 hover:bg-slate-50/50"
+                ? "text-indigo-600 font-bold"
+                : "text-slate-400 font-semibold disabled:opacity-50"
             }`}
           >
             <div className={`p-1.5 rounded-lg ${
-              currentStep === "docs" ? "bg-amber-50 text-amber-600" : "bg-transparent text-slate-400"
+              currentStep === "docs" ? "text-indigo-600" : "text-slate-400"
             }`}>
               <FileText className="h-4 w-4" />
             </div>
@@ -222,12 +222,12 @@ function ApplyPageContent() {
             disabled={travelers.length === 0 || Object.keys(uploadedDocs).length === 0}
             className={`flex-1 md:flex-initial flex items-center gap-3 px-4 py-3 rounded-xl text-left transition duration-300 ${
               currentStep === "checkout"
-                ? "bg-amber-50/70 text-amber-700 font-bold"
-                : "text-slate-400 font-semibold border border-transparent disabled:opacity-50 hover:text-slate-600 hover:bg-slate-50/50"
+                ? "text-indigo-600 font-bold"
+                : "text-slate-400 font-semibold disabled:opacity-50"
             }`}
           >
             <div className={`p-1.5 rounded-lg ${
-              currentStep === "checkout" ? "bg-amber-50 text-amber-600" : "bg-transparent text-slate-400"
+              currentStep === "checkout" ? "text-indigo-600" : "text-slate-400"
             }`}>
               <ShoppingCart className="h-4 w-4" />
             </div>
@@ -236,7 +236,7 @@ function ApplyPageContent() {
         </aside>
 
         {/* Content Panel */}
-        <main className="flex-1 flex flex-col justify-center items-center min-h-[50vh] bg-white rounded-[32px] border border-slate-100/70 p-6 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.015)] relative overflow-hidden">
+        <main className="flex-1 flex flex-col justify-center items-center min-h-[50vh] relative overflow-hidden">
           
           <AnimatePresence mode="wait">
             {currentStep === "travelers" && (
@@ -288,30 +288,25 @@ function ApplyPageContent() {
                 {/* Main input form */}
                 <form onSubmit={handleTravelerContinue} className="w-full mt-8 flex flex-col items-center">
                   <div className="w-full max-w-md relative mb-8">
-                    <div className="w-full rounded-2xl bg-slate-50/60 border border-slate-100 p-4 transition-all duration-350 focus-within:bg-white focus-within:border-amber-500/80 focus-within:shadow-[0_12px_24px_rgba(217,119,6,0.03)]">
-                      <label className="block text-[10px] uppercase font-extrabold tracking-wider text-slate-400 text-left mb-1.5">
-                        {addingState === "first_name" ? "Traveler's First Name" : "Traveler's Last Name"}
-                      </label>
-                      {addingState === "first_name" ? (
-                        <input
-                          type="text"
-                          value={currentFirstName}
-                          onChange={(e) => setCurrentFirstName(e.target.value)}
-                          placeholder="First Name"
-                          className="w-full text-left text-lg font-semibold text-slate-800 placeholder-slate-300 bg-transparent border-0 p-0 focus:outline-none focus:ring-0 focus:border-0"
-                          autoFocus
-                        />
-                      ) : (
-                        <input
-                          type="text"
-                          value={currentLastName}
-                          onChange={(e) => setCurrentLastName(e.target.value)}
-                          placeholder="Last Name"
-                          className="w-full text-left text-lg font-semibold text-slate-800 placeholder-slate-300 bg-transparent border-0 p-0 focus:outline-none focus:ring-0 focus:border-0"
-                          autoFocus
-                        />
-                      )}
-                    </div>
+                    {addingState === "first_name" ? (
+                      <input
+                        type="text"
+                        value={currentFirstName}
+                        onChange={(e) => setCurrentFirstName(e.target.value)}
+                        placeholder="Enter traveler's first name"
+                        className="w-full text-center text-xl md:text-2xl font-semibold text-slate-800 placeholder-slate-400 bg-transparent border-b border-dashed border-slate-300 focus:border-indigo-600 pb-2 transition-all duration-300 focus:outline-none focus:ring-0"
+                        autoFocus
+                      />
+                    ) : (
+                      <input
+                        type="text"
+                        value={currentLastName}
+                        onChange={(e) => setCurrentLastName(e.target.value)}
+                        placeholder="Enter traveler's last name"
+                        className="w-full text-center text-xl md:text-2xl font-semibold text-slate-800 placeholder-slate-400 bg-transparent border-b border-dashed border-slate-300 focus:border-indigo-600 pb-2 transition-all duration-300 focus:outline-none focus:ring-0"
+                        autoFocus
+                      />
+                    )}
                   </div>
 
                   {/* Continue Button */}
@@ -322,10 +317,10 @@ function ApplyPageContent() {
                         ? !currentFirstName.trim()
                         : !currentLastName.trim()
                     }
-                    className={`w-full max-w-xs rounded-2xl py-3.5 px-6 text-sm font-bold flex items-center justify-center gap-1.5 transition-all duration-300 ${
+                    className={`w-full max-w-xs rounded-xl py-3.5 px-6 text-sm font-bold flex items-center justify-center gap-1.5 transition duration-300 ${
                       (addingState === "first_name" ? currentFirstName.trim() : currentLastName.trim())
-                        ? "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-[0_8px_20px_rgba(217,119,6,0.18)] hover:shadow-[0_12px_24px_rgba(217,119,6,0.24)] hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
-                        : "bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200/50 shadow-none"
+                        ? "bg-slate-700 hover:bg-slate-800 text-white shadow-md active:scale-[0.99] cursor-pointer"
+                        : "bg-[#8c919d] text-white/95 cursor-not-allowed"
                     }`}
                   >
                     <span>Continue</span>
