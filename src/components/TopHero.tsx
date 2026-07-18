@@ -42,8 +42,11 @@ export function TopHero({ onStart }: TopHeroProps) {
                 {onStart ? (
                   <button
                     type="button"
-                    onClick={onStart}
-                    className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--primary-hover)]"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onStart();
+                    }}
+                    className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] border border-white/15 px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--primary-hover)] cursor-pointer"
                   >
                     Start Application
                     <ArrowRight className="h-4 w-4" />
@@ -51,7 +54,7 @@ export function TopHero({ onStart }: TopHeroProps) {
                 ) : (
                   <a
                     href="#application-flow"
-                    className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--primary-hover)]"
+                    className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] border border-white/15 px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--primary-hover)] cursor-pointer"
                   >
                     Start Application
                     <ArrowRight className="h-4 w-4" />
